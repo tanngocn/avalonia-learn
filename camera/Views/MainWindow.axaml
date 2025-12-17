@@ -1,0 +1,61 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:camera.ViewModels"
+        xmlns:view="using:camera.Views"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1040" d:DesignHeight="800"
+        Width="1040" Height="800"
+        x:Class="camera.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="camera">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+    <Grid ColumnDefinitions="Auto, *">
+        <ContentControl Grid.Column="1" Padding="10" Content="{Binding CurrentPage}"></ContentControl>
+        <Border Padding="10" Background="{DynamicResource PrimaryBgSidebarColor}">
+            <Grid RowDefinitions="*, Auto">
+                <StackPanel Spacing="12">
+                    <Image Source="{SvgImage /Assets/Images/logo.svg}" Width="40"></Image>
+                    <Button HorizontalAlignment="Stretch" Classes.active="{Binding HomePageIsActive}" Command="{Binding GotoHomeCommand}">
+                        <StackPanel Orientation="Vertical">
+                            <Image Source="{SvgImage /Assets/Images/home.svg}"></Image>
+                            <Label FontSize="14" Content="Trang chủ"></Label>
+                        </StackPanel>
+                    </Button>
+                    
+                    <Button HorizontalAlignment="Stretch" Classes.active="{Binding LivePageIsActive}" Command="{Binding GotoLiveCommand}">
+                        <StackPanel Orientation="Vertical" Spacing="2">
+                            <Image Source="{SvgImage /Assets/Images/movie.svg}"></Image>
+                            <Label FontSize="14" Content="Xem trực tiếp"></Label>
+                        </StackPanel>
+                    </Button>
+                    <Button HorizontalAlignment="Stretch">
+                        <StackPanel Orientation="Vertical" Spacing="2">
+                            <Image Source="{SvgImage /Assets/Images/videocam.svg}"></Image>
+                            <Label FontSize="14" Content="Thiết bị"></Label>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Spacing="2">
+                    <Button HorizontalAlignment="Stretch">
+                        <StackPanel Orientation="Vertical" Spacing="2">
+                            <Image Source="{SvgImage /Assets/Images/noti.svg}"></Image>
+                        </StackPanel>
+                    </Button>
+                    <Button HorizontalAlignment="Stretch">
+                        <StackPanel Orientation="Vertical" Spacing="2">
+                            <Image Source="{SvgImage /Assets/Images/settings.svg}"></Image>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+
+</Window>

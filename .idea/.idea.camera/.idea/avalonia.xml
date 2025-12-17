@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="camera/App.axaml" value="camera/camera.csproj" />
+        <entry key="camera/Controls/IconButton.axaml" value="camera/camera.csproj" />
+        <entry key="camera/Styles/AppStyle.axaml" value="camera/camera.csproj" />
+        <entry key="camera/Views/HomePageView.axaml" value="camera/camera.csproj" />
+        <entry key="camera/Views/LivePageView.axaml" value="camera/camera.csproj" />
+        <entry key="camera/Views/MainWindow.axaml" value="camera/camera.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

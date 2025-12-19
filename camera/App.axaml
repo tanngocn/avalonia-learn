@@ -15,6 +15,13 @@
     </Application.Styles>
              
     <Application.Resources>
+        
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <MergeResourceInclude Source="/Controls/IconButton.axaml"></MergeResourceInclude>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        
         <SolidColorBrush x:Key="PrimaryColor" Color="#0894A4"></SolidColorBrush>
         <SolidColorBrush x:Key="PrimaryBgColor" Color="#f1f1f1"></SolidColorBrush> 
         <SolidColorBrush x:Key="PrimaryBgSidebarColor" Color="#f5f5f5"></SolidColorBrush> 

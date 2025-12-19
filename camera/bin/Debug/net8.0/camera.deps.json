@@ -15,6 +15,7 @@
           "Avalonia.Svg.Skia": "11.3.0",
           "Avalonia.Themes.Fluent": "11.3.9",
           "CommunityToolkit.Mvvm": "8.4.0",
+          "LibVLCSharp.Avalonia": "3.9.5",
           "Microsoft.Extensions.DependencyInjection": "10.0.1"
         },
         "runtime": {
@@ -376,6 +377,26 @@
           }
         }
       },
+      "LibVLCSharp/3.9.5": {
+        "runtime": {
+          "lib/net8.0/LibVLCSharp.dll": {
+            "assemblyVersion": "3.9.5.0",
+            "fileVersion": "3.9.5.0"
+          }
+        }
+      },
+      "LibVLCSharp.Avalonia/3.9.5": {
+        "dependencies": {
+          "Avalonia": "11.3.9",
+          "LibVLCSharp": "3.9.5"
+        },
+        "runtime": {
+          "lib/netstandard2.0/LibVLCSharp.Avalonia.dll": {
+            "assemblyVersion": "3.9.5.0",
+            "fileVersion": "3.9.5.0"
+          }
+        }
+      },
       "MicroCom.Runtime/0.11.0": {
         "runtime": {
           "lib/net5.0/MicroCom.Runtime.dll": {
@@ -700,6 +721,20 @@
       "sha512": "sha512-UsJtQsfAJoFDZrXc4hCUfRPMqccfKZ0iumJ/upcUjz/cmsTgVFGNEL5yaJWmkqsuFYdMWbj/En5/kS4PFl9hBA==",
       "path": "harfbuzzsharp.nativeassets.win32/8.3.1.1",
       "hashPath": "harfbuzzsharp.nativeassets.win32.8.3.1.1.nupkg.sha512"
+    },
+    "LibVLCSharp/3.9.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wTNVRfvjvOtj/G5nOLSUnw2wRMNDQ3fnZtVVfWPWDbX5lSDEahrUKub+LduySb6WuJY03enx6bXWk6v+Sq4QNQ==",
+      "path": "libvlcsharp/3.9.5",
+      "hashPath": "libvlcsharp.3.9.5.nupkg.sha512"
+    },
+    "LibVLCSharp.Avalonia/3.9.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-AS3vHaV4W8U6jzxtPgvYu39nKVuabnunnU6Y4DElZd3x2K0bhK9GjrUVvbhkoRd8EhQhF+TE/hGiSiMUlT+WeA==",
+      "path": "libvlcsharp.avalonia/3.9.5",
+      "hashPath": "libvlcsharp.avalonia.3.9.5.nupkg.sha512"
     },
     "MicroCom.Runtime/0.11.0": {
       "type": "package",

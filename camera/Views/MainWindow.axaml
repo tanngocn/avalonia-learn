@@ -16,31 +16,25 @@
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel />
     </Design.DataContext>
-    <Grid ColumnDefinitions="Auto, *">
-        <ContentControl Grid.Column="1" Padding="10" Content="{Binding CurrentPage}"></ContentControl>
+    <Grid ColumnDefinitions="Auto, *" >
+        <ContentControl Grid.Column="1"  Content="{Binding CurrentPage}"></ContentControl>
         <Border Padding="10" Background="{DynamicResource PrimaryBgSidebarColor}">
             <Grid RowDefinitions="*, Auto">
                 <StackPanel Spacing="12">
                     <Image Source="{SvgImage /Assets/Images/logo.svg}" Width="40"></Image>
-                    <Button HorizontalAlignment="Stretch" Classes.active="{Binding HomePageIsActive}" Command="{Binding GotoHomeCommand}">
-                        <StackPanel Orientation="Vertical">
-                            <Image Source="{SvgImage /Assets/Images/home.svg}"></Image>
-                            <Label FontSize="14" Content="Trang chủ"></Label>
-                        </StackPanel>
-                    </Button>
                     
-                    <Button HorizontalAlignment="Stretch" Classes.active="{Binding LivePageIsActive}" Command="{Binding GotoLiveCommand}">
-                        <StackPanel Orientation="Vertical" Spacing="2">
-                            <Image Source="{SvgImage /Assets/Images/movie.svg}"></Image>
-                            <Label FontSize="14" Content="Xem trực tiếp"></Label>
-                        </StackPanel>
-                    </Button>
-                    <Button HorizontalAlignment="Stretch">
-                        <StackPanel Orientation="Vertical" Spacing="2">
-                            <Image Source="{SvgImage /Assets/Images/videocam.svg}"></Image>
-                            <Label FontSize="14" Content="Thiết bị"></Label>
-                        </StackPanel>
-                    </Button>
+                    <IconButton Content="Trang chủ" HorizontalAlignment="Stretch"
+                                Icon="{SvgImage avares://camera/Assets/Images/home.svg}" IconSize="20"
+                                DirectionLayout="Vertical" Classes.active="{Binding HomePageIsActive}"
+                                Command="{Binding GotoHomeCommand}">
+                    </IconButton>
+                    
+                    <IconButton Content="Xem trực tiếp" HorizontalAlignment="Stretch"
+                                Icon="{SvgImage avares://camera/Assets/Images/movie.svg}" IconSize="20"
+                                DirectionLayout="Vertical" Classes.active="{Binding LivePageIsActive}"
+                                Command="{Binding GotoLiveCommand}">
+                    </IconButton>
+                   
                 </StackPanel>
                 <StackPanel Grid.Row="1" Spacing="2">
                     <Button HorizontalAlignment="Stretch">

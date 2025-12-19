@@ -5,7 +5,7 @@
   <Design.PreviewWith>
     <Border Padding="20">
       <StackPanel Spacing="20">
-        <IconButton Icon="{SvgImage avares://camera/Assets/Images/home.svg}" Content="hello world"></IconButton>
+        <IconButton DirectionLayout="Vertical" IconSize="20" Icon="{SvgImage avares://camera/Assets/Images/home.svg}" Content="hello world"></IconButton>
         <Button Content="ss" />
         <Button Classes="accent" Content="Click Me!" />
       </StackPanel>
@@ -43,8 +43,8 @@
         
         <ContentPresenter.ContentTemplate>
             <DataTemplate DataType="x:Object">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="4">
-                   <Image Source="{Binding $parent[IconButton].Icon}" Width="16" Height="16" />
+                <StackPanel Orientation="{Binding $parent[IconButton].DirectionLayout}" HorizontalAlignment="Center" Spacing="4">
+                   <Image Source="{Binding $parent[IconButton].Icon}" Width="{Binding $parent[IconButton].IconSize}" Height="{Binding $parent[IconButton].IconSize}" />
                    <ContentPresenter Content="{Binding}"></ContentPresenter>
                 </StackPanel>
             </DataTemplate>

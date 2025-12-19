@@ -9,16 +9,16 @@
     </Design.PreviewWith>
 
     <!-- Add Styles Here -->
-    <Style Selector="Button">
+    <Style Selector=":is(Button)">
         <Setter Property="Foreground" Value="{DynamicResource PrimaryColorText}"></Setter>
-        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="Background" Value="#fff"></Setter>
         <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
     </Style>
-    <Style Selector="Button:pointerover /template/ ContentPresenter">
+    <Style Selector=":is(Button):pointerover /template/ ContentPresenter">
         <Setter Property="Foreground" Value="#fff"></Setter>
         <Setter Property="Background" Value="{DynamicResource PrimaryColor}"></Setter>
     </Style>
-    <Style Selector="Button.active">
+    <Style Selector=":is(Button).active">
         <Setter Property="Foreground" Value="#fff"></Setter>
         <Setter Property="Background" Value="{DynamicResource PrimaryColor}"></Setter>
     </Style>

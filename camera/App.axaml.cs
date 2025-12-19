@@ -1,15 +1,18 @@
 using System;
+using System.IO;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
 using Avalonia.Metadata;
+
 using camera.Data;
 using camera.Factories;
 using camera.ViewModels;
 using camera.Views;
+
+using LibVLCSharp.Shared;
 using Microsoft.Extensions.DependencyInjection;
 
 [assembly: XmlnsDefinition("https://github.com/avaloniaui", "camera.Controls")]
@@ -20,11 +23,20 @@ public partial class App : Application
     public override void Initialize()
     {
         AvaloniaXamlLoader.Load(this);
+        Core.Initialize();
     }
 
     public override void OnFrameworkInitializationCompleted()
     {
         var collection = new ServiceCollection();
+
+        collection.AddSingleton(sp => new LibVLC(
+            // "--avcodec-hw=any",
+            "--avcodec-hw=none",
+            "--no-video-title-show",
+            "--no-snapshot-preview"
+        ));
+        
         collection.AddSingleton<MainWindowViewModel>();
         collection.AddTransient<HomePageViewModel>();
         collection.AddTransient<LivePageViewModel>();
@@ -36,8 +48,11 @@ public partial class App : Application
         });
 
         collection.AddSingleton<PageFactory>();
+        collection.AddSingleton<MediaFactory>();
+        collection.AddSingleton<RenderingFactory>();
 
         var services = collection.BuildServiceProvider();
+        base.OnFrameworkInitializationCompleted();
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 

@@ -2,12 +2,7 @@
 
 namespace camera.ViewModels;
 
-public partial class LivePageViewModel: PageViewModel
+public partial class LivePageViewModel() : PageViewModel(ApplicationPageNames.Live)
 {
     public string Test { get; set; } = "LivePage";
-
-    public LivePageViewModel()
-    {
-        PageName = ApplicationPageNames.Live;
-    }
 }

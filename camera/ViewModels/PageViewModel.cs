@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace camera.ViewModels;
 
-public partial class PageViewModel: ViewModelBase
+public partial class PageViewModel(ApplicationPageNames pageName) : ViewModelBase
 {
-    [ObservableProperty] private ApplicationPageNames _pageName;
+    [ObservableProperty] private ApplicationPageNames _pageName = pageName;
 }

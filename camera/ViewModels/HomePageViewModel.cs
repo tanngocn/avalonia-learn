@@ -7,6 +7,9 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LibVLCSharp.Shared;
 using Avalonia.Threading;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
 namespace camera.ViewModels;
 public sealed partial class BoxVm : ObservableObject
 {
@@ -16,114 +19,97 @@ public sealed partial class BoxVm : ObservableObject
     [ObservableProperty] private double h;
     [ObservableProperty] private string? label;
 }
+
+public sealed partial class VideoTileVm : ObservableObject
+{
+    public required MediaPlayer MediaPlayer { get; init; }
+
+    [ObservableProperty]
+    private WriteableBitmap? bitmap;
+}
 public partial class HomePageViewModel : PageViewModel
 {
+    private const int TileCount = 16;
+
     private readonly MediaFactory _mediaFactory;
     private readonly RenderingFactory _renderingFactory;
+
+    [ObservableProperty]
+    private bool aiEnabled = true;
+
+    public bool ShowRawVideo => !AiEnabled;
+    
+    private readonly DispatcherTimer _frameUpdatedDebounceTimer = new() { Interval = TimeSpan.FromMilliseconds(100) };
+    private bool _frameUpdatePending;
+    
+    public ObservableCollection<VideoTileVm> Tiles { get; }
     public event Action? FrameUpdated;
     private readonly DispatcherTimer _boxTimer = new() { Interval = TimeSpan.FromSeconds(1) };
     
     public BoxVm Box { get; } = new BoxVm { X = 40, Y = 30, W = 160, H = 100 };
+    public IReadOnlyList<MediaPlayer> MediaPlayers { get; }
+    public IReadOnlyList<BitmapRender> Renderers { get; }
+    public ObservableCollection<WriteableBitmap?> VideoBitmaps { get; }
 
-    public MediaPlayer MediaPlayer { get; }
-    public MediaPlayer MediaPlayer1 { get; }
-    public MediaPlayer MediaPlayer2 { get; }
-    public MediaPlayer MediaPlayer3 { get; }
-    public MediaPlayer MediaPlayer4 { get; }
-    public MediaPlayer MediaPlayer5 { get; }
-    public MediaPlayer MediaPlayer6 { get; }
-    public MediaPlayer MediaPlayer7 { get; }
-    public MediaPlayer MediaPlayer8 { get; }
-    public MediaPlayer MediaPlayer9 { get; }
-    public MediaPlayer MediaPlayer10 { get; }
-    public MediaPlayer MediaPlayer11 { get; }
-    public MediaPlayer MediaPlayer12 { get; }
-    public MediaPlayer MediaPlayer13 { get; }
-    public MediaPlayer MediaPlayer14 { get; }
-    public MediaPlayer MediaPlayer15 { get; }
-    
-    public BitmapRender Renderer { get; }
-    public BitmapRender Renderer1 { get; }
-    public BitmapRender Renderer2 { get; }
-    public BitmapRender Renderer3 { get; }
-
-    [ObservableProperty]
-    private WriteableBitmap? videoBitmap;
-    [ObservableProperty]
-    private WriteableBitmap? videoBitmap1;
-    [ObservableProperty]
-    private WriteableBitmap? videoBitmap2;
-    [ObservableProperty]
-    private WriteableBitmap? videoBitmap3;
-
-
-    private readonly string _url = "rtmp://127.0.0.1:1935/substream";
+    // MediaMTX: viewer/consumer must use streamid=read:<path>. "publish:" is for the producer side.
+    private readonly string _url = "srt://127.0.0.1:8890?streamid=read:cam1&latency=50";
     public string Test => "Hello from LibVLCSharp";
+    
+    [RelayCommand]
+    private void Play(MediaPlayer mediaPlayer)
+    {
+        // Keep previous behavior: tile 0 uses software decoding for BitmapRender stability.
+        var useHardwareDecoding = !ReferenceEquals(mediaPlayer, MediaPlayers[0]);
+        _mediaFactory.CreateLiveMedia(_url, mediaPlayer, useHardwareDecoding);
+    }
+    
+    [RelayCommand]
+    private void Stop(MediaPlayer mediaPlayer) => mediaPlayer.Stop();
 
-    [RelayCommand]
-    private void Play1() => _mediaFactory.CreateLiveMedia(_url, MediaPlayer, false);
-
-    [RelayCommand]
-    private void Play2() => _mediaFactory.CreateLiveMedia(_url, MediaPlayer1, true);
-
-    [RelayCommand]
-    private void Play3() => _mediaFactory.CreateLiveMedia(_url, MediaPlayer2, true);  
-
-    [RelayCommand]
-    private void Play4() => _mediaFactory.CreateLiveMedia(_url, MediaPlayer3, true);
-    [RelayCommand]
-    private void Play5() => _mediaFactory.CreateLiveMedia(_url, MediaPlayer4, true);
-
-    [RelayCommand]
-    private void Play6() => _mediaFactory.CreateLiveMedia(_url, MediaPlayer5, true);
-
-    [RelayCommand]
-    private void Play7() => _mediaFactory.CreateLiveMedia(_url, MediaPlayer6, true);
-
-    [RelayCommand]
-    private void Play8() => _mediaFactory.CreateLiveMedia(_url, MediaPlayer7, true);
-    [RelayCommand]
-    private void Play9() => _mediaFactory.CreateLiveMedia(_url, MediaPlayer8, true);
-
-    [RelayCommand]
-    private void Play10() => _mediaFactory.CreateLiveMedia(_url, MediaPlayer9, true);
-
-    [RelayCommand]
-    private void Play11() => _mediaFactory.CreateLiveMedia(_url, MediaPlayer10, true);
-
-    [RelayCommand]
-    private void Play12() => _mediaFactory.CreateLiveMedia(_url, MediaPlayer11, true);
-    [RelayCommand]
-    private void Play13() => _mediaFactory.CreateLiveMedia(_url, MediaPlayer12, true);
-    [RelayCommand]
-    private void Play14() => _mediaFactory.CreateLiveMedia(_url, MediaPlayer13, true);
-    [RelayCommand]
-    private void Play15() => _mediaFactory.CreateLiveMedia(_url, MediaPlayer14, true);
-    [RelayCommand]
-    private void Play16() => _mediaFactory.CreateLiveMedia(_url, MediaPlayer15, true);
-    [RelayCommand]
-    private void Stop() => MediaPlayer.Stop();
-
-    public HomePageViewModel(MediaFactory mediaFactory, RenderingFactory renderingFactory)
+    public HomePageViewModel(MediaFactory mediaFactory, RenderingFactory renderingFactory): base(ApplicationPageNames.Home)
     {
         _mediaFactory = mediaFactory;
         _renderingFactory = renderingFactory;
-        MediaPlayer = _mediaFactory.CreatePlayer();
-        MediaPlayer1 = _mediaFactory.CreatePlayer();
-        MediaPlayer2 = _mediaFactory.CreatePlayer();
-        MediaPlayer3 = _mediaFactory.CreatePlayer();
-        MediaPlayer4 = _mediaFactory.CreatePlayer();
-        MediaPlayer5 = _mediaFactory.CreatePlayer();
-        MediaPlayer6 = _mediaFactory.CreatePlayer();
-        MediaPlayer7 = _mediaFactory.CreatePlayer();
-        MediaPlayer8= _mediaFactory.CreatePlayer();
-        MediaPlayer9 = _mediaFactory.CreatePlayer();
-        MediaPlayer10 = _mediaFactory.CreatePlayer();
-        MediaPlayer11 = _mediaFactory.CreatePlayer();
-        MediaPlayer12 = _mediaFactory.CreatePlayer();
-        MediaPlayer13 = _mediaFactory.CreatePlayer();
-        MediaPlayer14 = _mediaFactory.CreatePlayer();
-        MediaPlayer15 = _mediaFactory.CreatePlayer();
+        
+        _frameUpdatedDebounceTimer.Tick += (_, _) =>
+        {
+            _frameUpdatedDebounceTimer.Stop();
+            if (!_frameUpdatePending) return;
+            _frameUpdatePending = false;
+            FrameUpdated?.Invoke();
+        };
+
+        
+        var players = new MediaPlayer[TileCount];
+        for (var i = 0; i < TileCount; i++)
+            players[i] = _mediaFactory.CreatePlayer();
+        MediaPlayers = players;
+        
+        VideoBitmaps = new ObservableCollection<WriteableBitmap?>();
+        Tiles = new ObservableCollection<VideoTileVm>();
+        for (var i = 0; i < TileCount; i++)
+        {
+            VideoBitmaps.Add(null);
+            Tiles.Add(new VideoTileVm { MediaPlayer = MediaPlayers[i], Bitmap = null });
+        }
+
+        var renderers = new BitmapRender[TileCount];
+        for (var i = 0; i < TileCount; i++)
+        {
+            var idx = i; // capture
+            var renderer = _renderingFactory.CreateBitmapRenderer(MediaPlayers[idx]);
+            renderer.BitmapChanged += bmp =>
+            {
+                VideoBitmaps[idx] = bmp;
+                Tiles[idx].Bitmap = bmp;
+            };
+        
+            renderer.FrameRendered += RequestFrameUpdated;
+            VideoBitmaps[idx] = renderer.Bitmap;
+            Tiles[idx].Bitmap = renderer.Bitmap;
+            renderers[idx] = renderer;
+        }
+        Renderers = renderers;
         
         _boxTimer.Tick += (_, _) =>
         {
@@ -131,27 +117,16 @@ public partial class HomePageViewModel : PageViewModel
             if (Box.X > 400) Box.X = 40;
         };
         _boxTimer.Start();
-        
-        Renderer = _renderingFactory.CreateBitmapRenderer(MediaPlayer); // Attach callbacks ở đây
-        Renderer.BitmapChanged += bmp => VideoBitmap = bmp;
-        Renderer.FrameRendered += () => FrameUpdated?.Invoke();
-        VideoBitmap = Renderer.Bitmap;
-        
-        Renderer1 = _renderingFactory.CreateBitmapRenderer(MediaPlayer1); // Attach callbacks ở đây
-        Renderer1.BitmapChanged += bmp => VideoBitmap = bmp;
-        Renderer1.FrameRendered += () => FrameUpdated?.Invoke();
-        VideoBitmap1 = Renderer1.Bitmap;
-        
-        Renderer2 = _renderingFactory.CreateBitmapRenderer(MediaPlayer2); // Attach callbacks ở đây
-        Renderer2.BitmapChanged += bmp => VideoBitmap = bmp;
-        Renderer2.FrameRendered += () => FrameUpdated?.Invoke();
-        VideoBitmap2 = Renderer2.Bitmap;
-        
-        Renderer3 = _renderingFactory.CreateBitmapRenderer(MediaPlayer3); // Attach callbacks ở đây
-        Renderer3.BitmapChanged += bmp => VideoBitmap = bmp;
-        Renderer3.FrameRendered += () => FrameUpdated?.Invoke();
-        VideoBitmap3 = Renderer3.Bitmap;
-        
-        PageName = ApplicationPageNames.Home;
+    }
+    private void RequestFrameUpdated()
+    {
+        _frameUpdatePending = true;
+        if (!_frameUpdatedDebounceTimer.IsEnabled)
+            _frameUpdatedDebounceTimer.Start();
+    }
+
+    partial void OnAiEnabledChanged(bool value)
+    {
+        OnPropertyChanged(nameof(ShowRawVideo));
     }
 }

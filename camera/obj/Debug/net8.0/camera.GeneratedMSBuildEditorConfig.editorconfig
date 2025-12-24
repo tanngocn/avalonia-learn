@@ -34,6 +34,12 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [C:/Users/tanng/RiderProjects/camera/camera/Controls/IconButton.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/tanng/RiderProjects/camera/camera/Controls/TabControlCustom.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/tanng/RiderProjects/camera/camera/Controls/TabItemCustom.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/tanng/RiderProjects/camera/camera/Styles/AppStyle.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 

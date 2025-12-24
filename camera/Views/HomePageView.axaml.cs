@@ -38,9 +38,6 @@ public partial class HomePageView : UserControl
     private void OnFrameUpdated()
     {
         // VideoImage là Image có x:Name="VideoImage" trong XAML
-        Dispatcher.UIThread.Post(() => VideoImage.InvalidateVisual(), DispatcherPriority.Render);
-        Dispatcher.UIThread.Post(() => VideoImage1.InvalidateVisual(), DispatcherPriority.Render);
-        Dispatcher.UIThread.Post(() => VideoImage2.InvalidateVisual(), DispatcherPriority.Render);
-        Dispatcher.UIThread.Post(() => VideoImage3.InvalidateVisual(), DispatcherPriority.Render);
+        Dispatcher.UIThread.Post(() => TilesControl.InvalidateVisual(), DispatcherPriority.Render);
     }
 }

@@ -8,6 +8,7 @@
              mc:Ignorable="d" d:DesignWidth="1440" d:DesignHeight="880"
              MinWidth="1440" MinHeight="600"
              x:DataType="vm:HomePageViewModel"
+             x:Name="Root"
              x:Class="camera.Views.HomePageView">
     <Design.DataContext>
         <vm:HomePageViewModel></vm:HomePageViewModel>
@@ -15,162 +16,64 @@
 
 
     <Grid RowDefinitions="Auto, *, Auto">
-        <Label Content="{Binding Test}"></Label>
-        <Grid Grid.Row="1" RowDefinitions="*,*,*,*" ColumnDefinitions="*,*,*,*" ColumnSpacing="10" RowSpacing="10">
-
-
-            <!-- <Grid Grid.Row="0" Grid.Column="0" Background="AliceBlue"> -->
-            <!--     <StackPanel Orientation="Horizontal" -->
-            <!--                 VerticalAlignment="Top" -->
-            <!--                 Spacing="20" Background="red"> -->
-            <!-- -->
-            <!--         <Button Command="{Binding Play1Command}">Play</Button> -->
-            <!--         <Button Command="{Binding StopCommand}">Stop</Button> -->
-            <!--     </StackPanel> -->
-            <!--     <vlc:VideoView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0 30" -->
-            <!--                    MediaPlayer="{Binding MediaPlayer}"> -->
-            <!--         <Border HorizontalAlignment="Stretch" -->
-            <!--                 VerticalAlignment="Top" -->
-            <!--                 Background="Transparent" -->
-            <!--                 CornerRadius="4"> -->
-            <!--             <Panel Name="ControlPanel"> -->
-            <!-- -->
-            <!--             </Panel> -->
-            <!--         </Border> -->
-            <!--     </vlc:VideoView> -->
-            <!--     <Canvas IsHitTestVisible="False"> -->
-            <!--         <Rectangle Width="160" Height="100" -->
-            <!--                    Stroke="Lime" StrokeThickness="3" -->
-            <!--                    Canvas.Left="40" Canvas.Top="30"/> -->
-            <!--     </Canvas> -->
-            <!--     <StackPanel Orientation="Horizontal" -->
-            <!--                 VerticalAlignment="Bottom" -->
-            <!--                 Spacing="20" Background="red"> -->
-            <!-- -->
-            <!--     </StackPanel> -->
-            <!-- </Grid> -->
-            <Grid Grid.Row="0" Grid.Column="0" Background="AliceBlue">
-                <StackPanel Orientation="Horizontal"
-                            VerticalAlignment="Top"
-                            Spacing="20" Background="red">
-            
-                    <Button Command="{Binding Play1Command}">Play</Button>
-                    <Button Command="{Binding StopCommand}">Stop</Button>
-                </StackPanel>
-                <Image HorizontalAlignment="Stretch"
-                       x:Name="VideoImage" 
-                       VerticalAlignment="Stretch"
-                       Margin="0 30"
-                       Stretch="UniformToFill"
-                       Source="{Binding VideoBitmap}"
-                       ClipToBounds="True"/>
-
-                <Canvas IsHitTestVisible="False">
-                    <Rectangle Width="{Binding Box.W}"
-                               Height="{Binding Box.H}"
-                               Stroke="Lime" StrokeThickness="3"
-                               Canvas.Left="{Binding Box.X}"
-                               Canvas.Top="{Binding Box.Y}"/>
-                </Canvas>
-                <StackPanel Orientation="Horizontal"
-                            VerticalAlignment="Bottom"
-                            Spacing="20" Background="red">
-            
-                </StackPanel>
-            </Grid>
-            <Grid Grid.Row="0" Grid.Column="1" Background="AliceBlue">
-                <StackPanel Orientation="Horizontal"
-                            VerticalAlignment="Top"
-                            Spacing="20" Background="red">
-            
-                    <Button Command="{Binding Play2Command}">Play</Button>
-                    <Button Command="{Binding StopCommand}">Stop</Button>
-                </StackPanel>
-                <Image HorizontalAlignment="Stretch"
-                       x:Name="VideoImage1" 
-                       VerticalAlignment="Stretch"
-                       Margin="0 30"
-                       Stretch="UniformToFill"
-                       Source="{Binding VideoBitmap}"
-                       ClipToBounds="True"/>
-
-                <Canvas IsHitTestVisible="False">
-                    <Rectangle Width="{Binding Box.W}"
-                               Height="{Binding Box.H}"
-                               Stroke="Lime" StrokeThickness="3"
-                               Canvas.Left="{Binding Box.X}"
-                               Canvas.Top="{Binding Box.Y}"/>
-                </Canvas>
-                <StackPanel Orientation="Horizontal"
-                            VerticalAlignment="Bottom"
-                            Spacing="20" Background="red">
-            
-                </StackPanel>
-            </Grid>
-            <Grid Grid.Row="0" Grid.Column="2" Background="AliceBlue">
-                <StackPanel Orientation="Horizontal"
-                            VerticalAlignment="Top"
-                            Spacing="20" Background="red">
-            
-                    <Button Command="{Binding Play3Command}">Play</Button>
-                    <Button Command="{Binding StopCommand}">Stop</Button>
-                </StackPanel>
-                <Image HorizontalAlignment="Stretch"
-                       x:Name="VideoImage2" 
-                       VerticalAlignment="Stretch"
-                       Margin="0 30"
-                       Stretch="UniformToFill"
-                       Source="{Binding VideoBitmap}"
-                       ClipToBounds="True"/>
-
-                <Canvas IsHitTestVisible="False">
-                    <Rectangle Width="{Binding Box.W}"
-                               Height="{Binding Box.H}"
-                               Stroke="Lime" StrokeThickness="3"
-                               Canvas.Left="{Binding Box.X}"
-                               Canvas.Top="{Binding Box.Y}"/>
-                </Canvas>
-                <StackPanel Orientation="Horizontal"
-                            VerticalAlignment="Bottom"
-                            Spacing="20" Background="red">
-            
-                </StackPanel>
-            </Grid>
-            <Grid Grid.Row="0" Grid.Column="3" Background="AliceBlue">
-                <StackPanel Orientation="Horizontal"
-                            VerticalAlignment="Top"
-                            Spacing="20" Background="red">
-            
-                    <Button Command="{Binding Play4Command}">Play</Button>
-                    <Button Command="{Binding StopCommand}">Stop</Button>
-                </StackPanel>
-                <Image HorizontalAlignment="Stretch"
-                       x:Name="VideoImage3" 
-                       VerticalAlignment="Stretch"
-                       Margin="0 30"
-                       Stretch="UniformToFill"
-                       Source="{Binding VideoBitmap}"
-                       ClipToBounds="True"/>
-
-                <Canvas IsHitTestVisible="False">
-                    <Rectangle Width="{Binding Box.W}"
-                               Height="{Binding Box.H}"
-                               Stroke="Lime" StrokeThickness="3"
-                               Canvas.Left="{Binding Box.X}"
-                               Canvas.Top="{Binding Box.Y}"/>
-                </Canvas>
-                <StackPanel Orientation="Horizontal"
-                            VerticalAlignment="Bottom"
-                            Spacing="20" Background="red">
-            
-                </StackPanel>
-            </Grid>
-            
-
-    
-
-
+        <Grid ColumnDefinitions="*,Auto" Margin="8">
+            <Label Content="{Binding Test}" VerticalAlignment="Center"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
+                <TextBlock Text="AI" VerticalAlignment="Center"/>
+                <ToggleSwitch IsChecked="{Binding AiEnabled}"/>
+            </StackPanel>
         </Grid>
+        <ItemsControl Grid.Row="1"
+                      x:Name="TilesControl"
+                      ItemsSource="{Binding Tiles}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="4" Columns="4"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="AliceBlue" Margin="5">
+                        <Grid>
+                            <StackPanel Orientation="Horizontal"
+                                        VerticalAlignment="Top"
+                                        Spacing="20"
+                                        Background="red">
+                                <Button Command="{Binding DataContext.PlayCommand, ElementName=Root}"
+                                        CommandParameter="{Binding MediaPlayer}">Play</Button>
+                                <Button Command="{Binding DataContext.StopCommand, ElementName=Root}"
+                                        CommandParameter="{Binding MediaPlayer}">Stop</Button>
+                            </StackPanel>
+
+                            <Image HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch"
+                                   Margin="0 30"
+                                   Stretch="UniformToFill"
+                                   Source="{Binding Bitmap}"
+                                   IsVisible="{Binding DataContext.AiEnabled, ElementName=Root}"
+                                   ClipToBounds="True"/>
+
+                            <vlc:VideoView HorizontalAlignment="Stretch"
+                                           VerticalAlignment="Stretch"
+                                           Margin="0 30"
+                                           MediaPlayer="{Binding MediaPlayer}"
+                                           IsVisible="{Binding DataContext.ShowRawVideo, ElementName=Root}"/>
+
+                            <Canvas IsHitTestVisible="False"
+                                    IsVisible="{Binding DataContext.AiEnabled, ElementName=Root}">
+                                <Rectangle Width="{Binding DataContext.Box.W, ElementName=Root}"
+                                           Height="{Binding DataContext.Box.H, ElementName=Root}"
+                                           Stroke="Lime"
+                                           StrokeThickness="3"
+                                           Canvas.Left="{Binding DataContext.Box.X, ElementName=Root}"
+                                           Canvas.Top="{Binding DataContext.Box.Y, ElementName=Root}"/>
+                            </Canvas>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
 
 
     </Grid>

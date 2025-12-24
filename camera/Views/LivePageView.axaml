@@ -10,5 +10,15 @@
             <vm:LivePageViewModel></vm:LivePageViewModel>
         </Design.DataContext>
     
-    <Label Content="{Binding Test}"></Label>
+        <TabControlCustom>
+            <TabItemCustom Header="hello">
+                hello
+            </TabItemCustom>
+            <TabItemCustom Header="hi">
+                hi
+            </TabItemCustom>
+            <TabItemCustom Header="konochiwa">
+                hoho
+            </TabItemCustom>
+        </TabControlCustom>
 </UserControl>

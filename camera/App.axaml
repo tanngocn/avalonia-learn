@@ -19,6 +19,8 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <MergeResourceInclude Source="/Controls/IconButton.axaml"></MergeResourceInclude>
+                <MergeResourceInclude Source="/Controls/TabControlCustom.axaml"></MergeResourceInclude>
+                <MergeResourceInclude Source="/Controls/TabItemCustom.axaml"></MergeResourceInclude>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
         

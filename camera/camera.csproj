@@ -12,6 +12,8 @@
         <Folder Include="Models\" />
         <AvaloniaResource Include="Assets\**" />
     </ItemGroup>
+    
+    <!-- Avalonia SDK automatically includes all .axaml files, no need to include manually -->
 
     <ItemGroup>
         <PackageReference Include="Avalonia" Version="11.3.9" />

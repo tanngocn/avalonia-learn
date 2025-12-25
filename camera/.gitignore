@@ -1,0 +1,47 @@
+﻿# Build files
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio cache
+.vscode/
+.vs/
+
+# Debug files
+*.pdb
+*.cache
+*.log
+*.tlog
+
+# NuGet
+*.nupkg
+.nuget/
+packages/
+project.lock.json
+project.fragment.lock.json
+
+# LibVLC native libraries (we�ll keep .dlls in the project for LibVLCSharp)
+*.dll
+!libvlc/windows/*.dll
+
+# Runtime
+*.db
+*.db-shm
+*.db-wal
+
+# Config
+config.json
+appsettings.Development.json
+
+# OS junk
+Thumbs.db
+.DS_Store
+
+# JetBrains Rider
+.idea/
+
+# Git itself
+*.orig

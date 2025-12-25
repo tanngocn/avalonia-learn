@@ -1,16 +1,33 @@
 ﻿using System;
-using LibVLCSharp.Shared;
 using System.Collections.Generic;
+using LibVLCSharp.Shared;
+using camera.Data;
+
 namespace camera.Factories;
+
+/// <summary>
+/// Event args for when media is added with overlay configuration
+/// </summary>
+public class MediaAddedEventArgs : EventArgs
+{
+    public MediaPlayer MediaPlayer { get; init; } = null!;
+    public Media Media { get; init; } = null!;
+    public OverlayConfig? OverlayConfig { get; init; }
+}
 
 public class MediaFactory(LibVLC libVlc)
 {
     private readonly LibVLC _libVlc = libVlc ?? throw new ArgumentNullException(nameof(libVlc));
 
+    /// <summary>
+    /// Event fired when media is added with overlay configuration
+    /// </summary>
+    public event EventHandler<MediaAddedEventArgs>? MediaAdded;
+
     // Allow true low-latency. We'll still clamp per-protocol below.
     private const int MinCachingMs = 0;
     private const int MaxCachingMs = 1500;
-    
+
     // SRT on localhost can run with very low buffering, but on weaker machines
     // too-aggressive caching (e.g., 0–50ms) can cause freeze/stall when decode can't keep up.
     // Keep a small-but-safe default to trade a bit of latency for stability.
@@ -18,10 +35,12 @@ public class MediaFactory(LibVLC libVlc)
 
     // Match VLC desktop settings (per your screenshot)
     private const int DefaultFileCachingMs = 50;
-    private const int DefaultLiveCachingMs = 100;    // "Live capture caching (ms)"
+    private const int DefaultLiveCachingMs = 100; // "Live capture caching (ms)"
     private const int DefaultNetworkCachingMs = 100; // "Network caching (ms)"
+
     // Note: large jitter increases latency. Keep modest by default; SRT can go lower.
-    private const int DefaultClockJitterMs = 300;   // "Clock jitter"
+    private const int DefaultClockJitterMs = 300; // "Clock jitter"
+
     private int cachingMs = DefaultNetworkCachingMs;
     public MediaPlayer CreatePlayer()
     {
@@ -30,14 +49,15 @@ public class MediaFactory(LibVLC libVlc)
             // Default to SW; we toggle per tile in CreateLiveMedia for BitmapRender stability.
             EnableHardwareDecoding = false
         };
-        // {
-        //     EnableHardwareDecoding = true
-        // };
 
-        // Minimal diagnostics to see why playback fails (Debug output in Rider).
-        mp.EncounteredError += (_, _) => System.Diagnostics.Debug.WriteLine("[MediaPlayer] EncounteredError");
-        mp.Playing += (_, _) => System.Diagnostics.Debug.WriteLine("[MediaPlayer] Playing");
-        mp.Buffering += (_, e) => System.Diagnostics.Debug.WriteLine($"[MediaPlayer] Buffering {e.Cache:0}%");
+        // Enhanced diagnostics to see why playback fails (Debug output in Rider).
+        mp.EncounteredError += (_, _) => System.Diagnostics.Debug.WriteLine("[MediaPlayer] ❌ EncounteredError");
+        mp.Playing += (_, _) => System.Diagnostics.Debug.WriteLine("[MediaPlayer] ▶️ Playing");
+        mp.Buffering += (_, e) => System.Diagnostics.Debug.WriteLine($"[MediaPlayer] ⏳ Buffering {e.Cache:0}%");
+        mp.Opening += (_, _) => System.Diagnostics.Debug.WriteLine("[MediaPlayer] 🔓 Opening");
+        mp.EndReached += (_, _) => System.Diagnostics.Debug.WriteLine("[MediaPlayer] ⏹️ EndReached");
+        mp.Stopped += (_, _) => System.Diagnostics.Debug.WriteLine("[MediaPlayer] ⏸️ Stopped");
+        mp.Paused += (_, _) => System.Diagnostics.Debug.WriteLine("[MediaPlayer] ⏸️ Paused");
 
         return mp;
     }
@@ -46,13 +66,38 @@ public class MediaFactory(LibVLC libVlc)
     public void CreateMedia(string url, MediaPlayer mediaPlayer, bool useHardwareDecoding)
         => CreateLiveMedia(url, mediaPlayer, useHardwareDecoding);
 
-    public void CreateLiveMedia(string url, MediaPlayer mediaPlayer, bool useHardwareDecoding)
+    /// <summary>
+    /// Create live media with overlay configuration
+    /// </summary>
+    public void CreateLiveMedia(string url, MediaPlayer mediaPlayer, bool useHardwareDecoding, OverlayConfig? overlayConfig = null)
+    {
+        var media = CreateLiveMediaInternal(url, mediaPlayer, useHardwareDecoding);
+        
+        System.Diagnostics.Debug.WriteLine($"[MediaFactory] CreateLiveMedia completed, firing MediaAdded event");
+        System.Diagnostics.Debug.WriteLine($"[MediaFactory] OverlayConfig: {(overlayConfig != null ? "provided" : "null")}");
+        
+        // Fire event to notify that media was added with overlay config
+        MediaAdded?.Invoke(this, new MediaAddedEventArgs
+        {
+            MediaPlayer = mediaPlayer,
+            Media = media,
+            OverlayConfig = overlayConfig
+        });
+        
+        System.Diagnostics.Debug.WriteLine($"[MediaFactory] MediaAdded event fired, subscribers: {(MediaAdded?.GetInvocationList().Length ?? 0)}");
+    }
+
+    /// <summary>
+    /// Internal method to create live media (without overlay event)
+    /// </summary>
+    private Media CreateLiveMediaInternal(string url, MediaPlayer mediaPlayer, bool useHardwareDecoding)
     {
         if (mediaPlayer is null) throw new ArgumentNullException(nameof(mediaPlayer));
         if (string.IsNullOrWhiteSpace(url))
             throw new ArgumentException("URL is required", nameof(url));
 
         url = url.Trim();
+        System.Diagnostics.Debug.WriteLine($"[MediaFactory] CreateLiveMedia url='{url}', hw={useHardwareDecoding}");
         var networkCaching = Math.Clamp(cachingMs, MinCachingMs, MaxCachingMs);
         var fileCaching = Math.Clamp(DefaultFileCachingMs, MinCachingMs, MaxCachingMs);
         var liveCaching = Math.Clamp(DefaultLiveCachingMs, MinCachingMs, MaxCachingMs);
@@ -90,8 +135,7 @@ public class MediaFactory(LibVLC libVlc)
         if (string.Equals(scheme, "rtsp", StringComparison.OrdinalIgnoreCase))
         {
             // RTSP over UDP is frequently blocked/unreliable on Windows; TCP is safer.
-                media.AddOption(":rtsp-tcp");
-
+            media.AddOption(":rtsp-tcp");
             media.AddOption($":file-caching={fileCaching}");
             media.AddOption($":network-caching={networkCaching}");
             media.AddOption($":live-caching={liveCaching}");
@@ -127,7 +171,7 @@ public class MediaFactory(LibVLC libVlc)
                 media.AddOption($":streamid={decodedStreamId}");
                 media.AddOption($":srt-streamid={decodedStreamId}");
             }
-        
+
             var srtLatencyMs = 50;
             if (srtParams.TryGetValue("latency", out var latency) && int.TryParse(latency, out var parsedLatency) && parsedLatency >= 0)
                 srtLatencyMs = parsedLatency;
@@ -154,10 +198,23 @@ public class MediaFactory(LibVLC libVlc)
         // NOTE: skip-frames can result in displaying mostly keyframes only.
         // If your encoder GOP/keyint is ~8s, it looks like "image updates every ~8s".
         // Keep it off for live view to avoid that symptom.
-        
+
         media.AddOption(":no-audio");
 
+        System.Diagnostics.Debug.WriteLine($"[MediaFactory] Starting playback");
+        System.Diagnostics.Debug.WriteLine($"[MediaFactory] Media created with URL: {url}");
+        System.Diagnostics.Debug.WriteLine($"[MediaFactory] Scheme: {scheme}, IsSRT: {isSrt}");
+        
         mediaPlayer.Play(media);
+        System.Diagnostics.Debug.WriteLine($"[MediaFactory] Play() called, state={mediaPlayer.State}");
+        
+        // Hook Playing event to verify media started
+        mediaPlayer.Playing += (_, _) =>
+        {
+            System.Diagnostics.Debug.WriteLine($"[MediaFactory] ✅ Media is now playing - overlay should be active");
+        };
+
+        return media;
     }
 
     private static bool LooksLikeWindowsPath(string s)
@@ -185,7 +242,7 @@ public class MediaFactory(LibVLC libVlc)
         var hash = mrl.IndexOf('#', q + 1);
         return hash >= 0 ? mrl[q..hash] : mrl[q..];
     }
-    
+
     private static Dictionary<string, string> ParseQuery(string query)
     {
         var dict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
@@ -205,5 +262,4 @@ public class MediaFactory(LibVLC libVlc)
 
         return dict;
     }
-    
 }

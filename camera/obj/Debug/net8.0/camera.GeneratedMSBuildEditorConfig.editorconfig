@@ -46,8 +46,17 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [C:/Users/tanng/RiderProjects/camera/camera/Views/HomePageView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/tanng/RiderProjects/camera/camera/Views/LiveLogView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/tanng/RiderProjects/camera/camera/Views/LivePageView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/tanng/RiderProjects/camera/camera/Views/LivePrintView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/tanng/RiderProjects/camera/camera/Views/MainWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/tanng/RiderProjects/camera/camera/Views/OverlayWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

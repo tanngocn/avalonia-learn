@@ -16,19 +16,15 @@
 
 
     <Grid RowDefinitions="Auto, *, Auto">
-        <Grid ColumnDefinitions="*,Auto" Margin="8">
+        <Grid ColumnDefinitions="*" Margin="8">
             <Label Content="{Binding Test}" VerticalAlignment="Center"/>
-            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
-                <TextBlock Text="AI" VerticalAlignment="Center"/>
-                <ToggleSwitch IsChecked="{Binding AiEnabled}"/>
-            </StackPanel>
         </Grid>
         <ItemsControl Grid.Row="1"
                       x:Name="TilesControl"
                       ItemsSource="{Binding Tiles}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <UniformGrid Rows="4" Columns="4"/>
+                    <UniformGrid Rows="2" Columns="4"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
 
@@ -46,29 +42,17 @@
                                         CommandParameter="{Binding MediaPlayer}">Stop</Button>
                             </StackPanel>
 
-                            <Image HorizontalAlignment="Stretch"
-                                   VerticalAlignment="Stretch"
-                                   Margin="0 30"
-                                   Stretch="UniformToFill"
-                                   Source="{Binding Bitmap}"
-                                   IsVisible="{Binding DataContext.AiEnabled, ElementName=Root}"
-                                   ClipToBounds="True"/>
-
-                            <vlc:VideoView HorizontalAlignment="Stretch"
-                                           VerticalAlignment="Stretch"
-                                           Margin="0 30"
-                                           MediaPlayer="{Binding MediaPlayer}"
-                                           IsVisible="{Binding DataContext.ShowRawVideo, ElementName=Root}"/>
-
-                            <Canvas IsHitTestVisible="False"
-                                    IsVisible="{Binding DataContext.AiEnabled, ElementName=Root}">
-                                <Rectangle Width="{Binding DataContext.Box.W, ElementName=Root}"
-                                           Height="{Binding DataContext.Box.H, ElementName=Root}"
-                                           Stroke="Lime"
-                                           StrokeThickness="3"
-                                           Canvas.Left="{Binding DataContext.Box.X, ElementName=Root}"
-                                           Canvas.Top="{Binding DataContext.Box.Y, ElementName=Root}"/>
-                            </Canvas>
+                            <!-- Video container - OverlayWindow will be positioned to match this -->
+                            <Grid x:Name="VideoContainer"
+                                  Margin="0 30"
+                                  DataContext="{Binding}"
+                                  SizeChanged="OnVideoContainerSizeChanged"
+                                  Loaded="OnVideoContainerLoaded"
+                                  Unloaded="OnVideoContainerUnloaded">
+                                <vlc:VideoView HorizontalAlignment="Stretch"
+                                               VerticalAlignment="Stretch"
+                                               MediaPlayer="{Binding MediaPlayer}"/>
+                            </Grid>
                         </Grid>
                     </Border>
                 </DataTemplate>

@@ -3,22 +3,21 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:camera.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:local="clr-namespace:camera.Views"
+             mc:Ignorable="d" d:DesignWidth="1400" d:DesignHeight="800"
              x:DataType="vm:LivePageViewModel"
              x:Class="camera.Views.LivePageView">
         <Design.DataContext>
             <vm:LivePageViewModel></vm:LivePageViewModel>
         </Design.DataContext>
     
-        <TabControlCustom>
+        <TabControlCustom SelectionChanged="LiveTab_OnSelectionChanged" Name="LiveTabControls">
             <TabItemCustom Header="hello">
-                hello
+                <local:LivePrintView />
             </TabItemCustom>
             <TabItemCustom Header="hi">
-                hi
+                <local:LiveLogView />
             </TabItemCustom>
-            <TabItemCustom Header="konochiwa">
-                hoho
-            </TabItemCustom>
+          
         </TabControlCustom>
 </UserControl>

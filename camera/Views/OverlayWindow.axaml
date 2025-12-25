@@ -1,0 +1,38 @@
+<Window xmlns="https://github.com/avaloniaui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       xmlns:vm="using:camera.ViewModels"
+       x:Class="camera.Views.OverlayWindow"
+       Background="Transparent"
+       ShowInTaskbar="False"
+       IsHitTestVisible="False"
+       Topmost="False"
+       WindowStartupLocation="Manual"
+       CanResize="False"
+       SystemDecorations="None"
+       TransparencyLevelHint="Transparent">
+    <Canvas x:Name="OverlayCanvas">
+        <!-- Rectangle box (similar to WPF OverlayWindow._rect) -->
+        <Rectangle x:Name="RectBox"
+                    Stroke="Lime"
+                    StrokeThickness="2"
+                    Fill="Transparent"
+                    RadiusX="4"
+                    RadiusY="4"/>
+        
+        <!-- Label (similar to WPF OverlayWindow._label) -->
+        <TextBlock x:Name="LabelTextBlock"
+                   Text="person"
+                   FontSize="14"
+                   FontWeight="SemiBold"
+                   Foreground="Black"
+                   Background="Lime"
+                   Padding="4,1,4,1"/>
+        
+        <!-- Polygon (similar to WPF OverlayWindow._poly) -->
+        <Polygon x:Name="PolygonShape"
+                 Stroke="Red"
+                 StrokeThickness="2"
+                 Fill="#50FF0000"/>
+    </Canvas>
+</Window>
+

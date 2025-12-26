@@ -14,11 +14,14 @@ public partial class LivePageView : UserControl
         InitializeComponent();
     }
 
-    private void LiveTab_OnSelectionChanged(object? sender, SelectionChangedEventArgs e) => OnTabChanged();
+    private void LiveTab_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        if(Equals(e.Source, LiveTabControls)) OnTabChanged();
+    }
 
     private void OnTabChanged()
     {
-        var selectedTab = (LiveTabControls?.SelectedItem  as TabItem)!.Content! as Control;
+        var selectedTab = (LiveTabControls?.SelectedItem  as TabItem)?.Content! as Control;
         
         if (selectedTab == null) return;
         
@@ -34,6 +37,7 @@ public partial class LivePageView : UserControl
     protected override void OnInitialized()
     {
         OnTabChanged();
+        
         base.OnInitialized();
     }
 }

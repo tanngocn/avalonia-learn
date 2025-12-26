@@ -124,7 +124,7 @@ public partial class HomePageViewModel : PageViewModel
     // Example: rtsp://admin:password123@192.168.1.100:554/Streaming/Channels/101
     // For testing without auth: rtsp://192.168.1.100:554/stream
     // MediaMTX: rtsp://127.0.0.1:8554/hk2mcam
-    private readonly string _url = "rtsp://127.0.0.1:8554/hk2mcam";
+    private readonly string _url = "rtsp://10.2.21.96:8554/hk2mcam";
 
     public ObservableCollection<VideoTileVm> Tiles { get; }
     public IReadOnlyList<MediaPlayer> MediaPlayers { get; }

@@ -23,8 +23,12 @@ public partial class MainWindowViewModel : ViewModelBase
         GotoHome();
     }
 
+    // [RelayCommand]
+    // private void GotoHome() => CurrentPage = _pageFactory.GetPageViewModel(ApplicationPageNames.Home);
+    // [RelayCommand]
+    // private void GotoLive() => CurrentPage = _pageFactory.GetPageViewModel(ApplicationPageNames.Live);
     [RelayCommand]
-    private void GotoHome() => CurrentPage = _pageFactory.GetPageViewModel(ApplicationPageNames.Home);
+    private void GotoHome() => CurrentPage = _pageFactory.GetPageViewModel<HomePageViewModel>();
     [RelayCommand]
-    private void GotoLive() => CurrentPage = _pageFactory.GetPageViewModel(ApplicationPageNames.Live);
+    private void GotoLive() => CurrentPage = _pageFactory.GetPageViewModel<LivePageViewModel>();
 }

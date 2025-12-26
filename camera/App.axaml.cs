@@ -41,10 +41,16 @@ public partial class App : Application
         collection.AddTransient<HomePageViewModel>();
         collection.AddTransient<LivePageViewModel>();
         
-        collection.AddSingleton<Func<ApplicationPageNames, PageViewModel>>(x => name => name switch
+        // collection.AddSingleton<Func<ApplicationPageNames, PageViewModel>>(x => name => name switch
+        // {
+        //     ApplicationPageNames.Home => x.GetRequiredService<HomePageViewModel>(),
+        //     ApplicationPageNames.Live => x.GetRequiredService<LivePageViewModel>(),
+        // });
+        collection.AddSingleton<Func<Type, PageViewModel>>(x => type => type switch
         {
-            ApplicationPageNames.Home => x.GetRequiredService<HomePageViewModel>(),
-            ApplicationPageNames.Live => x.GetRequiredService<LivePageViewModel>(),
+            _ when type == typeof(HomePageViewModel) => x.GetRequiredService<HomePageViewModel>(),
+            _ when type == typeof(LivePageViewModel) => x.GetRequiredService<LivePageViewModel>(),
+            _=>  throw new  NotImplementedException()
         });
 
         collection.AddSingleton<PageFactory>();

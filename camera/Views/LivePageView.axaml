@@ -12,10 +12,10 @@
         </Design.DataContext>
     
         <TabControlCustom SelectionChanged="LiveTab_OnSelectionChanged" Name="LiveTabControls">
-            <TabItemCustom Header="hello">
+            <TabItemCustom Header="Print" IsSelected="True">
                 <local:LivePrintView />
             </TabItemCustom>
-            <TabItemCustom Header="hi">
+            <TabItemCustom Header="Log">
                 <local:LiveLogView />
             </TabItemCustom>
           

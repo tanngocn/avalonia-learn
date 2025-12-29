@@ -1,11 +1,12 @@
 ﻿using camera.Data;
 using camera.Factories;
+using camera.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 namespace camera.ViewModels;
 
-public partial class MainWindowViewModel : ViewModelBase
+public partial class MainWindowViewModel : ViewModelBase, IDialogProvider
 {
     private PageFactory _pageFactory;
     
@@ -13,6 +14,9 @@ public partial class MainWindowViewModel : ViewModelBase
     [NotifyPropertyChangedFor(nameof(HomePageIsActive))]
     [NotifyPropertyChangedFor(nameof(LivePageIsActive))]
     private PageViewModel _currentPage;
+    
+    [ObservableProperty]
+    private DialogViewModel _dialog;
 
     public bool HomePageIsActive => CurrentPage.PageName == ApplicationPageNames.Home;
     public bool LivePageIsActive => CurrentPage.PageName == ApplicationPageNames.Live;
@@ -23,12 +27,12 @@ public partial class MainWindowViewModel : ViewModelBase
         GotoHome();
     }
 
-    // [RelayCommand]
-    // private void GotoHome() => CurrentPage = _pageFactory.GetPageViewModel(ApplicationPageNames.Home);
-    // [RelayCommand]
-    // private void GotoLive() => CurrentPage = _pageFactory.GetPageViewModel(ApplicationPageNames.Live);
     [RelayCommand]
-    private void GotoHome() => CurrentPage = _pageFactory.GetPageViewModel<HomePageViewModel>();
+    private void GotoHome() => CurrentPage = _pageFactory.GetPageViewModel(ApplicationPageNames.Home);
     [RelayCommand]
-    private void GotoLive() => CurrentPage = _pageFactory.GetPageViewModel<LivePageViewModel>();
+    private void GotoLive() => CurrentPage = _pageFactory.GetPageViewModel(ApplicationPageNames.Live);
+    // [RelayCommand]
+    // private void GotoHome() => CurrentPage = _pageFactory.GetPageViewModel<HomePageViewModel>();
+    // [RelayCommand]
+    // private void GotoLive() => CurrentPage = _pageFactory.GetPageViewModel<LivePageViewModel>();
 }

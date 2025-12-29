@@ -11,6 +11,7 @@
         <entry key="camera/Controls/TabItemCustom.axaml" value="camera/camera.csproj" />
         <entry key="camera/Controls/TabStripItem.axaml" value="camera/camera.csproj" />
         <entry key="camera/Styles/AppStyle.axaml" value="camera/camera.csproj" />
+        <entry key="camera/Views/ConfirmDialogView.axaml" value="camera/camera.csproj" />
         <entry key="camera/Views/HomePageView.axaml" value="camera/camera.csproj" />
         <entry key="camera/Views/LiveLogView.axaml" value="camera/camera.csproj" />
         <entry key="camera/Views/LivePageView.axaml" value="camera/camera.csproj" />

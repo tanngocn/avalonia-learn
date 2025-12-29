@@ -18,8 +18,6 @@ public partial class LivePrintView : UserControl
         
         if (e.AddedItems?.Count >0  && e.AddedItems[0]  is LivePrintViewModel viewModel)
         {   
-            //listen changed
-            viewModel.SetSavedState();
         }
     }
 }

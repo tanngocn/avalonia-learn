@@ -1,0 +1,40 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:camera.ViewModels"
+             mc:Ignorable="mc"
+             MinWidth="300"
+             Padding="10"
+             x:DataType="vm:ConfirmDialogViewModel"
+             x:Class="camera.Views.ConfirmDialogView"
+             Foreground="gray">
+
+    <Design.DataContext>
+        <vm:ConfirmDialogViewModel></vm:ConfirmDialogViewModel>
+    </Design.DataContext>
+    <Border Background="{DynamicResource PrimaryBgColor}" CornerRadius="10" ClipToBounds="true" BorderBrush="gray"
+            BorderThickness="1" Margin="10">
+        <StackPanel>
+            <Border Background="Black" CornerRadius="10 10 0  0 " Padding="10">
+                <TextBlock Text="{Binding Title}"></TextBlock>
+            </Border>
+
+            <Border Padding="20">
+                <StackPanel Spacing="20">
+                    <StackPanel Orientation="Horizontal">
+
+                        <TextBlock Text="{Binding Descirption}" Padding="10">
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Spacing="10">
+                        <Button Content="{Binding CancelText}"  Command="{Binding Close}"/>
+                        <Button Content="{Binding ConfirmText}"  Command="{Binding Confirm}" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            </StackPanel>
+
+
+    </Border>
+</UserControl>

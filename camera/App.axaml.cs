@@ -9,6 +9,8 @@ using Avalonia.Metadata;
 
 using camera.Data;
 using camera.Factories;
+using camera.Interfaces;
+using camera.Services;
 using camera.ViewModels;
 using camera.Views;
 
@@ -38,27 +40,28 @@ public partial class App : Application
         ));
         
         collection.AddSingleton<MainWindowViewModel>();
+        // Register MainWindowViewModel as IDialogProvider
         collection.AddTransient<HomePageViewModel>();
         collection.AddTransient<LivePageViewModel>();
         
-        // collection.AddSingleton<Func<ApplicationPageNames, PageViewModel>>(x => name => name switch
-        // {
-        //     ApplicationPageNames.Home => x.GetRequiredService<HomePageViewModel>(),
-        //     ApplicationPageNames.Live => x.GetRequiredService<LivePageViewModel>(),
-        // });
-        collection.AddSingleton<Func<Type, PageViewModel>>(x => type => type switch
+        collection.AddSingleton<Func<ApplicationPageNames, PageViewModel>>(x => name => name switch
         {
-            _ when type == typeof(HomePageViewModel) => x.GetRequiredService<HomePageViewModel>(),
-            _ when type == typeof(LivePageViewModel) => x.GetRequiredService<LivePageViewModel>(),
-            _=>  throw new  NotImplementedException()
+            ApplicationPageNames.Home => x.GetRequiredService<HomePageViewModel>(),
+            ApplicationPageNames.Live => x.GetRequiredService<LivePageViewModel>(),
         });
+        // collection.AddSingleton<Func<Type, PageViewModel>>(x => type => type switch
+        // {
+        //     _ when type == typeof(HomePageViewModel) => x.GetRequiredService<HomePageViewModel>(),
+        //     _ when type == typeof(LivePageViewModel) => x.GetRequiredService<LivePageViewModel>(),
+        //     _=>  throw new  NotImplementedException()
+        // });
 
         collection.AddSingleton<PageFactory>();
+        collection.AddSingleton<DialogService>();
         collection.AddSingleton<MediaFactory>();
-        collection.AddSingleton<RenderingFactory>();
 
         var services = collection.BuildServiceProvider();
-        base.OnFrameworkInitializationCompleted();
+      
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 

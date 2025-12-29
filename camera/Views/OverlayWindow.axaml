@@ -27,12 +27,12 @@
                    Foreground="Black"
                    Background="Lime"
                    Padding="4,1,4,1"/>
-        
         <!-- Polygon (similar to WPF OverlayWindow._poly) -->
         <Polygon x:Name="PolygonShape"
                  Stroke="Red"
                  StrokeThickness="2"
                  Fill="#50FF0000"/>
+        
     </Canvas>
 </Window>
 

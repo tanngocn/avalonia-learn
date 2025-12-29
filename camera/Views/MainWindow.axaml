@@ -50,6 +50,13 @@
                 </StackPanel>
             </Grid>
         </Border>
+        
+        
+        <!-- Overlay Dialog-->
+        <Grid Grid.Column="0" Grid.ColumnSpan="2" Name="DialogOverlay" IsVisible="{Binding #DialogOverlay.Opacity}" Opacity="{Binding Dialog.IsDialogOpen, FallbackValue=0}">
+            <Border Background="Black" Opacity="0.5" />
+            <ContentControl Content="{Binding Dialog}" HorizontalAlignment="Center" VerticalAlignment="Center"></ContentControl>
+        </Grid>
     </Grid>
 
 </Window>

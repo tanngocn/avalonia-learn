@@ -12,13 +12,16 @@
     </Design.DataContext>
 
     <Grid ColumnDefinitions="*, 10, 1.5*, 10, 1.5*">
-        <Grid RowDefinitions="Auto, 10, Auto, *, Auto" RowSpacing="24">
+        <Grid RowDefinitions="Auto, Auto, Auto, *, Auto" RowSpacing="24">
 
             <Label Classes="h2" Content="Hello world" />
 
             <TextBlock Grid.Row="1" Text="hello hello"></TextBlock>
-            <Button Grid.Row="2" Content="Add Print Item" Command="{Binding AddPrintItem}" HorizontalAlignment="Stretch"></Button>
-            <ListBox SelectionChanged="SelectingItemsControl_OnSelectionChanged"  Grid.Row="3" ItemsSource="{Binding PrintList}" SelectedItem="{Binding SelectedPrintListItem}">
+            <Button Grid.Row="2" Content="Add Print Item" Command="{Binding AddPrintItem}"
+                    HorizontalAlignment="Stretch">
+            </Button>
+            <ListBox SelectionChanged="SelectingItemsControl_OnSelectionChanged" Grid.Row="3"
+                     ItemsSource="{Binding PrintList}" SelectedItem="{Binding SelectedPrintListItem}">
                 <ListBox.ItemTemplate>
                     <DataTemplate x:DataType="vm:LivePrintViewModel">
                         <Grid ColumnDefinitions="*,Auto">
@@ -38,22 +41,23 @@
                 </ListBox.Styles>
             </ListBox>
         </Grid>
-        <Grid Grid.Column="2"  RowDefinitions="Auto, Auto, Auto" >
-            <StackPanel >
-             <Label Content="Title"></Label>   
-            <TextBox Text="{Binding SelectedPrintListItem.Title}"></TextBox>
-             
+        <Grid Grid.Column="2" RowDefinitions="Auto, Auto, Auto">
+            <StackPanel>
+                <Label Content="Title"></Label>
+                <TextBox Text="{Binding SelectedPrintListItem.Title}"></TextBox>
+
             </StackPanel>
-            <StackPanel Grid.Row="1" >
-                <Label Content="Description"></Label>   
+            <StackPanel Grid.Row="1">
+                <Label Content="Description"></Label>
                 <TextBox Text="{Binding SelectedPrintListItem.Description}"></TextBox>
             </StackPanel>
-            
-            <StackPanel Grid.Row="2"  Orientation="Horizontal"  HorizontalAlignment="Right" IsVisible="{Binding SelectedPrintListItem.HasChanged}" >
-               <Button>Cancel</Button>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right"
+                        Opacity="{Binding SelectedPrintListItem.HasChanged, FallbackValue=0}">
+                <Button>Cancel</Button>
                 <Button> Save</Button>
             </StackPanel>
-          
+
         </Grid>
     </Grid>
 </UserControl>

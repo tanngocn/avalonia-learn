@@ -1,4 +1,6 @@
 ﻿using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using camera.ViewModels;
 
@@ -71,6 +73,15 @@ public partial class HomePageView : UserControl
                 tile.OverlayWindow = null;
             }
             tile.VideoContainer = null;
+        }
+    }
+
+    private void InputElement_OnPointerPressed(object? sender, PointerPressedEventArgs e)
+    {
+        var ctl = sender as Control;
+        if (ctl != null)
+        {
+            FlyoutBase.ShowAttachedFlyout(ctl);
         }
     }
 }

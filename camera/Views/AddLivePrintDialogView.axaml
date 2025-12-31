@@ -3,16 +3,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:camera.ViewModels"
+             x:Class="camera.Views.AddLivePrintDialogView"
+             x:DataType="vm:AddLivePrintDialogViewModel"
              mc:Ignorable="mc"
              MinWidth="300"
              Width="{Binding DialogWidth}"
              Padding="10"
-             x:DataType="vm:ConfirmDialogViewModel"
-             x:Class="camera.Views.ConfirmDialogView"
              Foreground="gray">
-
     <Design.DataContext>
-        <vm:ConfirmDialogViewModel></vm:ConfirmDialogViewModel>
+        <vm:AddLivePrintDialogViewModel />
     </Design.DataContext>
     <Border Background="{DynamicResource PrimaryBgColor}" CornerRadius="10" ClipToBounds="true" BorderBrush="gray"
             BorderThickness="1" Margin="10">
@@ -23,19 +22,22 @@
 
             <Border Padding="20">
                 <StackPanel Spacing="20">
-                    <StackPanel Orientation="Horizontal">
-
-                        <TextBlock Text="{Binding Message}" Padding="10">
-                        </TextBlock>
+                    <StackPanel Orientation="Vertical" Spacing="10">
+                        <Label Content="Title" >
+                        </Label>
+                        <TextBox Text="{Binding Name}"></TextBox>
+                        <Label Content="Descritpion" >
+                        </Label>
+                        <TextBox Text="{Binding Description}"></TextBox>
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Spacing="10">
-                        <Button Content="{Binding CancelText}"  Command="{Binding Close}"/>
-                        <Button Content="{Binding ConfirmText}"  Command="{Binding ConfirmAsync}" />
+                        <Button Content="{Binding CancelText}"  Command="{Binding Cancel}"/>
+                        <Button Content="{Binding ConfirmText}"  Command="{Binding SaveAsync}" />
                     </StackPanel>
                 </StackPanel>
             </Border>
-            </StackPanel>
-
+        </StackPanel>
+        
 
     </Border>
 </UserControl>

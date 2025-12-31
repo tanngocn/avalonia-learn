@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using camera.Data;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -10,13 +11,19 @@ using camera.Interfaces;
 
 namespace camera.ViewModels;
 
-public partial class LivePageViewModel(MainWindowViewModel mainWindowViewModel, DialogService dialogService) : PageViewModel(ApplicationPageNames.Live)
+ public partial class LivePageViewModel(MainWindowViewModel mainWindowViewModel, DialogService dialogService) : PageViewModel(ApplicationPageNames.Live)
 {
     [ObservableProperty] 
     [NotifyPropertyChangedFor(nameof(PrintListHasItems))]
     private ObservableCollection<LivePrintViewModel> _printList;
 
     [ObservableProperty] private LivePrintViewModel _selectedPrintListItem;
+    
+    [ObservableProperty] 
+    private ObservableCollection<KeyValuePair<string, string>> _printerSizeOptions = [
+    
+        new("0", "(Default)"),
+        new("1", "(Default)")];
 
 
     [RelayCommand]
@@ -29,15 +36,14 @@ public partial class LivePageViewModel(MainWindowViewModel mainWindowViewModel, 
     }
 
     public bool PrintListHasItems => PrintList.Any();
-    [RelayCommand]
     private void FetchPrintList()
     {
         // Todo Fetch from services
         PrintList =
         [
-            new LivePrintViewModel { Title = "react", Description = "React Description" },
-            new LivePrintViewModel { Title = "angular", Description = "Angular Description" },
-            new LivePrintViewModel { Title = "C#", Description = "C# description" },
+            new LivePrintViewModel { Name = "react", Description = "React Description" },
+            new LivePrintViewModel { Name = "angular", Description = "Angular Description" },
+            new LivePrintViewModel { Name = "C#", Description = "C# description" },
         ];
         
         // Update PrintListItems when collections changes
@@ -56,9 +62,28 @@ public partial class LivePageViewModel(MainWindowViewModel mainWindowViewModel, 
         }
     }
     [RelayCommand]
-    public async Task DeletePrintList(string title)
+    public async Task EditPrintItem(string name)
     {
-        if (PrintList.Count(x => x.Title == title) != 1)
+        if (PrintList.Count(x => x.Name == name) != 1)
+        {
+            //throw error
+            return;
+        }
+        var printItemViewModel = PrintList.FirstOrDefault(f=> f.Name == name);
+
+        var copiedPrintViewModel = new EditLivePrintDialogViewModel();
+        copiedPrintViewModel.RestoreState(printItemViewModel?.GetState());
+        
+        await dialogService.ShowDialog(mainWindowViewModel, copiedPrintViewModel);
+        
+        if (!copiedPrintViewModel.Confirmed) return;
+
+    }
+
+    [RelayCommand]
+    public async Task DeletePrintList(string name)
+    {
+        if (PrintList.Count(x => x.Name == name) != 1)
         {
             //throw error
             return;
@@ -67,7 +92,7 @@ public partial class LivePageViewModel(MainWindowViewModel mainWindowViewModel, 
         var confirmViewModel = new ConfirmDialogViewModel
         {
             Title = "Confirm",
-            Descirption = "Test config Dialog"
+            Message = "Test config Dialog"
         };
         
         await dialogService.ShowDialog(mainWindowViewModel, confirmViewModel);
@@ -75,7 +100,7 @@ public partial class LivePageViewModel(MainWindowViewModel mainWindowViewModel, 
         if (!confirmViewModel.Confirmed) return;
         
 
-        var index = PrintList.IndexOf((PrintList.First(x => x.Title == title)));
+        var index = PrintList.IndexOf((PrintList.First(x => x.Name == name)));
         PrintList.RemoveAt(index);
 
         if (index > 0) index --;
@@ -86,9 +111,20 @@ public partial class LivePageViewModel(MainWindowViewModel mainWindowViewModel, 
     }
 
     [RelayCommand]
-    public void AddPrintItem()
+    public async Task AddPrintItem()
     {
-        var newItem = new LivePrintViewModel { Title = Guid.NewGuid().ToString("N"), Description = "C++ descirption", IsSelected = true };
+        
+        var addPrintItemViewModel = new AddLivePrintDialogViewModel
+        {
+            Title = "Add Print",
+            Message = "Test config Dialog"
+        };
+        
+        await dialogService.ShowDialog(mainWindowViewModel, addPrintItemViewModel);
+        
+        if (!addPrintItemViewModel.Confirmed) return;
+
+        var newItem = new LivePrintViewModel { Name = Guid.NewGuid().ToString("N"), Description = "C++ descirption", IsSelected = true };
 
         PrintList.Add(newItem);
     }

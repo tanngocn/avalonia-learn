@@ -11,7 +11,7 @@
         <vm:LivePageViewModel />
     </Design.DataContext>
 
-    <Grid ColumnDefinitions="*, 10, 1.5*, 10, 1.5*">
+    <Grid ColumnDefinitions="*, 10, 1.5*, 10, 1.5*" RowDefinitions="Auto, *, Auto">
         <Grid RowDefinitions="Auto, Auto, Auto, *, Auto" RowSpacing="24">
 
             <Label Classes="h2" Content="Hello world" />
@@ -25,12 +25,19 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate x:DataType="vm:LivePrintViewModel">
                         <Grid ColumnDefinitions="*,Auto">
-                            <Label Content="{Binding Title}"></Label>
-                            <Button
-                                Command="{Binding $parent[ListBox].((vm:LivePageViewModel)DataContext).DeletePrintList}"
-                                CommandParameter="{Binding Title}" IsVisible="{Binding IsSelected}" Grid.Column="1">
-                                Delete
-                            </Button>
+                            <Label Content="{Binding Name}"></Label>
+                            <StackPanel Orientation="Horizontal" Grid.Column="1" Spacing="5">
+                                <Button
+                                    Command="{Binding $parent[ListBox].((vm:LivePageViewModel)DataContext).EditPrintItem}"
+                                    CommandParameter="{Binding Name}" IsVisible="{Binding IsSelected}">
+                                    Edit
+                                </Button>
+                                <Button
+                                    Command="{Binding $parent[ListBox].((vm:LivePageViewModel)DataContext).DeletePrintList}"
+                                    CommandParameter="{Binding Name}" IsVisible="{Binding IsSelected}">
+                                    Delete
+                                </Button>
+                            </StackPanel>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -44,7 +51,7 @@
         <Grid Grid.Column="2" RowDefinitions="Auto, Auto, Auto">
             <StackPanel>
                 <Label Content="Title"></Label>
-                <TextBox Text="{Binding SelectedPrintListItem.Title}"></TextBox>
+                <TextBox Text="{Binding SelectedPrintListItem.Name}"></TextBox>
 
             </StackPanel>
             <StackPanel Grid.Row="1">
@@ -58,6 +65,34 @@
                 <Button> Save</Button>
             </StackPanel>
 
+        </Grid>
+        <!-- Table Data grid -->
+
+        <Grid Grid.Row="1" Grid.ColumnSpan="5">
+            <DataGrid Grid.Row="4" ItemsSource="{Binding PrintList}">
+                <DataGrid.Styles>
+                    <Style Selector="DataGrid DataGridColumnHeader">
+                        <Setter Property="Background" Value="{DynamicResource PrimaryColor}"></Setter>
+                        <Setter Property="Foreground" Value="{DynamicResource PrimaryBgColor}"></Setter>
+                    </Style>
+                </DataGrid.Styles>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" CanUserSort="True" />
+                    <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
+                    <!-- <DataGridTemplateColumn Header="Something have template "> -->
+                    <!--     <DataGridTemplateColumn.CellTemplate> -->
+                    <!--         <DataTemplate> -->
+                    <!--             ~1~ Template here@1@ -->
+                    <!--         </DataTemplate> -->
+                    <!--     </DataGridTemplateColumn.CellTemplate> -->
+                    <!-- </DataGridTemplateColumn> -->
+                    <!-- checkbox -->
+                    <!-- <DataGridCheckBoxColumn></DataGridCheckBoxColumn> -->
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Grid Grid.Row="2" Grid.ColumnSpan="5">
+            <TextBlock Text="hello"></TextBlock>
         </Grid>
     </Grid>
 </UserControl>

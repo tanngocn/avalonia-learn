@@ -4,6 +4,7 @@
     <option name="projectPerEditor">
       <map>
         <entry key="camera/App.axaml" value="camera/camera.csproj" />
+        <entry key="camera/Controls/DataGridCustom.axaml" value="camera/camera.csproj" />
         <entry key="camera/Controls/IconButton.axaml" value="camera/camera.csproj" />
         <entry key="camera/Controls/Tab.axaml" value="camera/camera.csproj" />
         <entry key="camera/Controls/TabControl.axaml" value="camera/camera.csproj" />
@@ -11,10 +12,14 @@
         <entry key="camera/Controls/TabItemCustom.axaml" value="camera/camera.csproj" />
         <entry key="camera/Controls/TabStripItem.axaml" value="camera/camera.csproj" />
         <entry key="camera/Styles/AppStyle.axaml" value="camera/camera.csproj" />
+        <entry key="camera/Views/AddLivePrintDialogView.axaml" value="camera/camera.csproj" />
+        <entry key="camera/Views/AddLivePrintView.axaml" value="camera/camera.csproj" />
         <entry key="camera/Views/ConfirmDialogView.axaml" value="camera/camera.csproj" />
+        <entry key="camera/Views/EditLivePrintDialogView.axaml" value="camera/camera.csproj" />
         <entry key="camera/Views/HomePageView.axaml" value="camera/camera.csproj" />
         <entry key="camera/Views/LiveLogView.axaml" value="camera/camera.csproj" />
         <entry key="camera/Views/LivePageView.axaml" value="camera/camera.csproj" />
+        <entry key="camera/Views/LivePrintItemView.axaml" value="camera/camera.csproj" />
         <entry key="camera/Views/LivePrintView.axaml" value="camera/camera.csproj" />
         <entry key="camera/Views/MainWindow.axaml" value="camera/camera.csproj" />
         <entry key="camera/Views/OverlayWindow.axaml" value="camera/camera.csproj" />

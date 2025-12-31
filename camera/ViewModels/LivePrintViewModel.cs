@@ -11,11 +11,14 @@ public partial class LivePrintViewModel: ViewModelBase
     
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HasChanged))]
-    private string _title;
+    private string _name;
     
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HasChanged))]
     private string _description;
+    
+    [ObservableProperty]
+    private bool _isNewItem;
     
     [ObservableProperty]
     [property: JsonIgnore]
@@ -24,7 +27,7 @@ public partial class LivePrintViewModel: ViewModelBase
 
 
     [property: JsonIgnore]
-    public bool  HasChanged => _savedState != ""  && _savedState != JsonSerializer.Serialize(this);
+    public new bool  HasChanged => IsNewItem ||  SavedState != ""  && SavedState != JsonSerializer.Serialize(this);
 
     public void SetSavedState(){
         _savedState= JsonSerializer.Serialize(this);

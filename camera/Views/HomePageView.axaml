@@ -17,29 +17,43 @@
 
     <Grid RowDefinitions="Auto, *, Auto">
         <Grid ColumnDefinitions="*" Margin="8">
-            <Label Content="{Binding Test}" VerticalAlignment="Center"/>
+            <Label Content="{Binding Test}" VerticalAlignment="Center" />
         </Grid>
         <ItemsControl Grid.Row="1"
                       x:Name="TilesControl"
                       ItemsSource="{Binding Tiles}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <UniformGrid Rows="2" Columns="4"/>
+                    <UniformGrid Rows="2" Columns="4" />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
 
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Border Background="AliceBlue" Margin="5">
+                    <Border Background="red" Margin="10" PointerPressed="InputElement_OnPointerPressed">
+                        <FlyoutBase.AttachedFlyout >
+                            <Flyout Placement="Center"  ShowMode="Standard" >
+                                <Rectangle x:Name="RectBox"
+                                           Stroke="Lime"
+                                           StrokeThickness="2"
+                                           Fill="Transparent"
+                                           RadiusX="4"
+                                           RadiusY="4"/>
+                            </Flyout>
+                        </FlyoutBase.AttachedFlyout>
                         <Grid>
                             <StackPanel Orientation="Horizontal"
                                         VerticalAlignment="Top"
                                         Spacing="20"
                                         Background="red">
                                 <Button Command="{Binding DataContext.PlayCommand, ElementName=Root}"
-                                        CommandParameter="{Binding MediaPlayer}">Play</Button>
+                                        CommandParameter="{Binding MediaPlayer}">
+                                    Play
+                                </Button>
                                 <Button Command="{Binding DataContext.StopCommand, ElementName=Root}"
-                                        CommandParameter="{Binding MediaPlayer}">Stop</Button>
+                                        CommandParameter="{Binding MediaPlayer}">
+                                    Stop
+                                </Button>
                             </StackPanel>
 
                             <!-- Video container - OverlayWindow will be positioned to match this -->
@@ -49,9 +63,12 @@
                                   SizeChanged="OnVideoContainerSizeChanged"
                                   Loaded="OnVideoContainerLoaded"
                                   Unloaded="OnVideoContainerUnloaded">
-                                <vlc:VideoView HorizontalAlignment="Stretch"
-                                               VerticalAlignment="Stretch"
-                                               MediaPlayer="{Binding MediaPlayer}"/>
+                                <vlc:VideoView
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    MediaPlayer="{Binding MediaPlayer}">
+
+                                </vlc:VideoView>
                             </Grid>
                         </Grid>
                     </Border>

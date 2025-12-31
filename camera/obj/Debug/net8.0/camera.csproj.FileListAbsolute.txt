@@ -929,3 +929,4 @@ C:\Users\tanng\RiderProjects\camera\camera\bin\Debug\net8.0\runtimes\win-x86\nat
 C:\Users\tanng\RiderProjects\camera\camera\obj\Debug\net8.0\camera.csproj.Up2Date
 C:\Users\tanng\RiderProjects\camera\camera\obj\Debug\net8.0\camera.genruntimeconfig.cache
 C:\Users\tanng\RiderProjects\camera\camera\obj\Debug\net8.0\ref\camera.dll
+C:\Users\tanng\RiderProjects\camera\camera\bin\Debug\net8.0\Avalonia.Controls.DataGrid.dll

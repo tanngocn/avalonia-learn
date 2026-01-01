@@ -1,0 +1,67 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:camera.ViewModels"
+             x:Class="camera.Views.CameraDetailView"
+             x:DataType="vm:CameraDetailViewModel">
+    
+    <Design.DataContext>
+        <vm:CameraDetailViewModel />
+    </Design.DataContext>
+
+    <Border Padding="20">
+        <StackPanel Spacing="15">
+            <TextBlock Text="{Binding DeviceName}" 
+                      FontSize="20"
+                      FontWeight="Bold" />
+            
+            <TextBlock Text="Camera Detail View" 
+                      FontSize="14"
+                      Foreground="Gray" />
+            
+            <Border Background="#F5F5F5" 
+                   BorderBrush="#E0E0E0"
+                   BorderThickness="1"
+                   CornerRadius="4"
+                   Padding="20">
+                <StackPanel Spacing="10">
+                    <Grid ColumnDefinitions="Auto, *">
+                        <TextBlock Grid.Column="0" 
+                                  Text="Name:" 
+                                  FontWeight="Bold"
+                                  Margin="0,0,10,0" />
+                        <TextBlock Grid.Column="1" 
+                                  Text="{Binding DeviceName}" />
+                    </Grid>
+                    
+                    <Grid ColumnDefinitions="Auto, *">
+                        <TextBlock Grid.Column="0" 
+                                  Text="Type:" 
+                                  FontWeight="Bold"
+                                  Margin="0,0,10,0" />
+                        <TextBlock Grid.Column="1" 
+                                  Text="{Binding DeviceType}" />
+                    </Grid>
+                    
+                    <Grid ColumnDefinitions="Auto, *">
+                        <TextBlock Grid.Column="0" 
+                                  Text="Status:" 
+                                  FontWeight="Bold"
+                                  Margin="0,0,10,0" />
+                        <TextBlock Grid.Column="1" 
+                                  Text="{Binding Status}" />
+                    </Grid>
+                    
+                    <Grid ColumnDefinitions="Auto, *">
+                        <TextBlock Grid.Column="0" 
+                                  Text="Description:" 
+                                  FontWeight="Bold"
+                                  Margin="0,0,10,0" />
+                        <TextBlock Grid.Column="1" 
+                                  Text="{Binding Description}"
+                                  TextWrapping="Wrap" />
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </Border>
+</UserControl>

@@ -22,50 +22,77 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = camera
-build_property.ProjectDir = C:\Users\tanng\RiderProjects\camera\camera\
+build_property.ProjectDir = C:\Users\ngocnt\Desktop\avalonia-learn\camera\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/tanng/RiderProjects/camera/camera/App.axaml]
+[C:/Users/ngocnt/Desktop/avalonia-learn/camera/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/tanng/RiderProjects/camera/camera/Controls/IconButton.axaml]
+[C:/Users/ngocnt/Desktop/avalonia-learn/camera/Controls/IconButton.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/tanng/RiderProjects/camera/camera/Controls/TabControlCustom.axaml]
+[C:/Users/ngocnt/Desktop/avalonia-learn/camera/Controls/TabControlCustom.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/tanng/RiderProjects/camera/camera/Controls/TabItemCustom.axaml]
+[C:/Users/ngocnt/Desktop/avalonia-learn/camera/Controls/TabItemCustom.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/tanng/RiderProjects/camera/camera/Styles/AppStyle.axaml]
+[C:/Users/ngocnt/Desktop/avalonia-learn/camera/Styles/AppStyle.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/tanng/RiderProjects/camera/camera/Views/AddLivePrintDialogView.axaml]
+[C:/Users/ngocnt/Desktop/avalonia-learn/camera/Styles/DeviceExpanderStyles.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/tanng/RiderProjects/camera/camera/Views/ConfirmDialogView.axaml]
+[C:/Users/ngocnt/Desktop/avalonia-learn/camera/Styles/DialogStyles.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/tanng/RiderProjects/camera/camera/Views/EditLivePrintDialogView.axaml]
+[C:/Users/ngocnt/Desktop/avalonia-learn/camera/Styles/ExpanderStyles.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/tanng/RiderProjects/camera/camera/Views/HomePageView.axaml]
+[C:/Users/ngocnt/Desktop/avalonia-learn/camera/Styles/LivePageStyles.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/tanng/RiderProjects/camera/camera/Views/LiveLogView.axaml]
+[C:/Users/ngocnt/Desktop/avalonia-learn/camera/Views/AddLivePrintDialogView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/tanng/RiderProjects/camera/camera/Views/LivePageView.axaml]
+[C:/Users/ngocnt/Desktop/avalonia-learn/camera/Views/CameraDetailView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/tanng/RiderProjects/camera/camera/Views/LivePrintView.axaml]
+[C:/Users/ngocnt/Desktop/avalonia-learn/camera/Views/CameraListView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/tanng/RiderProjects/camera/camera/Views/MainWindow.axaml]
+[C:/Users/ngocnt/Desktop/avalonia-learn/camera/Views/ConfirmDialogView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/tanng/RiderProjects/camera/camera/Views/OverlayWindow.axaml]
+[C:/Users/ngocnt/Desktop/avalonia-learn/camera/Views/DeviceExpanderView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/ngocnt/Desktop/avalonia-learn/camera/Views/EditLivePrintDialogView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/ngocnt/Desktop/avalonia-learn/camera/Views/EventExpanderView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/ngocnt/Desktop/avalonia-learn/camera/Views/HomePageView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/ngocnt/Desktop/avalonia-learn/camera/Views/LiveLogView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/ngocnt/Desktop/avalonia-learn/camera/Views/LivePageView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/ngocnt/Desktop/avalonia-learn/camera/Views/LivePrintView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/ngocnt/Desktop/avalonia-learn/camera/Views/MainWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/ngocnt/Desktop/avalonia-learn/camera/Views/NotificationExpanderView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/ngocnt/Desktop/avalonia-learn/camera/Views/OverlayWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

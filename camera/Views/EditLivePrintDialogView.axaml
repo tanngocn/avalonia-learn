@@ -9,24 +9,24 @@
     <Design.DataContext>
         <vm:EditLivePrintDialogViewModel />
     </Design.DataContext>
-    <Border Background="{DynamicResource PrimaryBgColor}" CornerRadius="10" ClipToBounds="true" BorderBrush="gray"
-            BorderThickness="1" Margin="10">
+    <Border Classes="DialogContainerBorderStyle">
         <StackPanel>
-            <Border Background="Black" CornerRadius="10 10 0  0 " Padding="10">
+            <Border Classes="DialogHeaderBorderStyle">
                 <TextBlock Text="{Binding Title}"></TextBlock>
             </Border>
 
-            <Border Padding="20">
+            <Border Classes="DialogContentBorderStyle">
                 <StackPanel Spacing="20">
-                    <StackPanel Orientation="Vertical" Spacing="10">
-                        <Label Content="Title" >
-                        </Label>
+                    <StackPanel Classes="DialogFormStackPanelStyle">
+                        <Label Content="Title" />
                         <TextBox Text="{Binding Name}"></TextBox>
-                        <Label Content="Descritpion" >
-                        </Label>
+                        <Label Content="Descritpion" />
                         <TextBox Text="{Binding Description}"></TextBox>
+                        <CheckBox Content="Allow auto save (không hỏi lại khi save)" 
+                                 IsChecked="{Binding AllowAutoSave}" 
+                                 Classes="DialogCheckBoxStyle" />
                     </StackPanel>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Spacing="10">
+                    <StackPanel Classes="DialogButtonsStackPanelStyle">
                         <Button Content="{Binding CancelText}"  Command="{Binding Cancel}"/>
                         <Button Content="{Binding ConfirmText}"  Command="{Binding SaveAsync}" />
                     </StackPanel>

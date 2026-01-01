@@ -21,6 +21,9 @@ public partial class AddLivePrintDialogViewModel : DialogViewModel
     private bool _loading = false;
     public bool NotLoading() => !Loading;
     
+    [ObservableProperty]
+    private bool _allowAutoSave = false;
+    
     public Func<AddLivePrintDialogViewModel, Task<bool>> OnSave { get; set; } = (_) =>
     {
         // To do something API
@@ -31,6 +34,14 @@ public partial class AddLivePrintDialogViewModel : DialogViewModel
     public async Task SaveAsync()
     {
         if (Loading) return;
+        
+        // Nếu đã cho phép auto save, không cần hỏi lại, save luôn
+        if (!AllowAutoSave)
+        {
+            // Có thể thêm logic confirm ở đây nếu cần
+            // Nhưng hiện tại không có confirm, nên chỉ cần check AllowAutoSave
+        }
+        
         Loading = true;
         var result = await OnSave(this);
 

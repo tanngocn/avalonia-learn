@@ -1,0 +1,43 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:camera.ViewModels"
+             x:Class="camera.Views.CameraListView"
+             x:DataType="vm:CameraListViewModel">
+    
+    <Design.DataContext>
+        <vm:CameraListViewModel />
+    </Design.DataContext>
+
+    <Border Padding="20">
+        <StackPanel Spacing="15">
+            <TextBlock Text="{Binding DeviceName}" 
+                      FontSize="20"
+                      FontWeight="Bold" />
+            
+            <TextBlock Text="Camera List View" 
+                      FontSize="14"
+                      Foreground="Gray" />
+            
+            <ItemsControl ItemsSource="{Binding Cameras}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="#F5F5F5" 
+                               BorderBrush="#E0E0E0"
+                               BorderThickness="1"
+                               CornerRadius="4"
+                               Padding="15"
+                               Margin="0,0,0,10">
+                            <StackPanel Spacing="5">
+                                <TextBlock Text="{Binding Name}" 
+                                          FontWeight="Bold" />
+                                <TextBlock Text="{Binding Description}" 
+                                          FontSize="12"
+                                          Foreground="Gray" />
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </Border>
+</UserControl>

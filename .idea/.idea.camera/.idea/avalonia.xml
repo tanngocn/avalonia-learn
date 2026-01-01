@@ -8,6 +8,7 @@
         <entry key="camera/Controls/IconButton.axaml" value="camera/camera.csproj" />
         <entry key="camera/Controls/Tab.axaml" value="camera/camera.csproj" />
         <entry key="camera/Controls/TabControl.axaml" value="camera/camera.csproj" />
+        <entry key="camera/Controls/TabControlCustom.axaml" value="camera/camera.csproj" />
         <entry key="camera/Controls/TabItem.axaml" value="camera/camera.csproj" />
         <entry key="camera/Controls/TabItemCustom.axaml" value="camera/camera.csproj" />
         <entry key="camera/Controls/TabStripItem.axaml" value="camera/camera.csproj" />

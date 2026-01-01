@@ -1,0 +1,163 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!-- Node Button Style (Unselected) -->
+    <Style Selector="Button.NodeButtonStyle">
+        <Setter Property="MinHeight" Value="32" />
+        <Setter Property="Padding" Value="12,6" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Background" Value="#E0E0E0" />
+        <Setter Property="BorderThickness" Value="1,1,0,1" />
+        <Setter Property="BorderBrush" Value="#CCCCCC" />
+        <Setter Property="CornerRadius" Value="4,0,0,4" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Foreground" Value="#333333" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+    
+    <!-- Node Button Selected Style -->
+    <Style Selector="Button.NodeButtonSelectedStyle">
+        <Setter Property="Background" Value="#4A90E2" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <!-- Close Button Style (Normal) -->
+    <Style Selector="Button.CloseButtonStyle">
+        <Setter Property="Content" Value="×" />
+        <Setter Property="MinHeight" Value="32" />
+        <Setter Property="Width" Value="32" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Background" Value="#E0E0E0" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="#CCCCCC" />
+        <Setter Property="CornerRadius" Value="0,4,4,0" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="#666666" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+    
+    <!-- Close Button Hover Style (only when not selected) -->
+    <Style Selector="Button.CloseButtonStyle:pointerover:not(.CloseButtonSelectedStyle)">
+        <Setter Property="Background" Value="#FF6B6B" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <!-- Close Button Selected Style -->
+    <Style Selector="Button.CloseButtonSelectedStyle">
+        <Setter Property="Background" Value="#4A90E2" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <!-- Close Button Selected Hover Style (keep selected color on hover) -->
+    <Style Selector="Button.CloseButtonSelectedStyle:pointerover">
+        <Setter Property="Background" Value="#3A7BC2" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <!-- Node Container Style -->
+    <Style Selector="StackPanel.NodeContainerStyle">
+        <Setter Property="Orientation" Value="Horizontal" />
+        <Setter Property="Margin" Value="2,0,0,0" />
+        <Setter Property="Spacing" Value="0" />
+    </Style>
+    
+    <!-- Sidebar Border Style -->
+    <Style Selector="Border.SidebarBorderStyle">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="BorderBrush" Value="#E0E0E0" />
+        <Setter Property="BorderThickness" Value="0,0,1,0" />
+    </Style>
+    
+    <!-- Sidebar Header Style -->
+    <Style Selector="Border.SidebarHeaderStyle">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Padding" Value="15,10" />
+    </Style>
+    
+    <!-- Sidebar Header Text Style -->
+    <Style Selector="TextBlock.SidebarHeaderTextStyle">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+    
+    <!-- Sidebar Content Style -->
+    <Style Selector="ScrollViewer.SidebarContentStyle">
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Background" Value="White" />
+    </Style>
+    
+    <!-- Sidebar StackPanel Style -->
+    <Style Selector="StackPanel.SidebarStackPanelStyle">
+        <Setter Property="Spacing" Value="0" />
+        <Setter Property="Background" Value="White" />
+    </Style>
+    
+    <!-- Top Bar Border Style -->
+    <Style Selector="Border.TopBarBorderStyle">
+        <Setter Property="Background" Value="#F5F5F5" />
+        <Setter Property="Padding" Value="10" />
+    </Style>
+    
+    <!-- Drop Zone Border Style (Normal) -->
+    <Style Selector="Border.DropZoneBorderStyle">
+        <Setter Property="Background" Value="#E3F2FD" />
+        <Setter Property="BorderBrush" Value="#BBDEFB" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="MinHeight" Value="50" />
+    </Style>
+    
+    <!-- Drop Zone Border Style (Drag Over) -->
+    <Style Selector="Border.DropZoneBorderDragOverStyle">
+        <Setter Property="Background" Value="#C8C8C8" />
+        <Setter Property="BorderBrush" Value="#969696" />
+        <Setter Property="BorderThickness" Value="2" />
+    </Style>
+    
+    <!-- Drop Hint Text Style (Normal) -->
+    <Style Selector="TextBlock.DropHintTextStyle">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="#4A90E2" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="IsHitTestVisible" Value="False" />
+    </Style>
+    
+    <!-- Drop Hint Text Style (Drag Over) -->
+    <Style Selector="TextBlock.DropHintTextDragOverStyle">
+        <Setter Property="Foreground" Value="#646464" />
+    </Style>
+    
+    <!-- Content Area Border Style -->
+    <Style Selector="Border.ContentAreaBorderStyle">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="BorderBrush" Value="#E0E0E0" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+    
+    <!-- Top Bar Button Style -->
+    <Style Selector="Button.TopBarButtonStyle">
+        <Setter Property="Padding" Value="15,8" />
+    </Style>
+    
+    <!-- Right Buttons StackPanel Style -->
+    <Style Selector="StackPanel.RightButtonsStackPanelStyle">
+        <Setter Property="Orientation" Value="Horizontal" />
+        <Setter Property="Spacing" Value="10" />
+        <Setter Property="Margin" Value="10,0,0,0" />
+    </Style>
+</Styles>

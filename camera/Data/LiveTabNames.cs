@@ -4,5 +4,7 @@ public enum  LiveTabNames
 {
     Unknown,
     Print,
-    Log
+    Log,
+    CameraList,
+    CameraDetail
 }

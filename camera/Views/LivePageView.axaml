@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:camera.ViewModels"
              xmlns:local="clr-namespace:camera.Views"
+             xmlns:controls="using:camera.Controls"
              mc:Ignorable="d" d:DesignWidth="1400" d:DesignHeight="800"
              x:DataType="vm:LivePageViewModel"
              x:Class="camera.Views.LivePageView">
@@ -11,13 +12,121 @@
             <vm:LivePageViewModel></vm:LivePageViewModel>
         </Design.DataContext>
     
-        <TabControlCustom SelectionChanged="LiveTab_OnSelectionChanged" Name="LiveTabControls">
-            <TabItemCustom Header="Print" IsSelected="True">
-                <local:LivePrintView />
-            </TabItemCustom>
-            <TabItemCustom Header="Log">
-                <local:LiveLogView />
-            </TabItemCustom>
+        <Grid RowDefinitions="Auto, *" ColumnDefinitions="Auto, *">
+            <!-- Sidebar (Left Panel) -->
+            <Border Grid.Row="0" Grid.RowSpan="2" 
+                   Grid.Column="0"
+                   Classes="SidebarBorderStyle"
+                   Width="250"
+                   IsVisible="{Binding IsSidebarVisible}">
+                <Border.Styles>
+                    <Style Selector="Border">
+                        <Setter Property="Transitions">
+                            <Transitions>
+                                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.3" />
+                            </Transitions>
+                        </Setter>
+                    </Style>
+                </Border.Styles>
+                <Grid RowDefinitions="Auto, *">
+                    <!-- Sidebar Header with Close Button -->
+                    <Border Grid.Row="0" 
+                           Classes="SidebarHeaderStyle">
+                        <Grid ColumnDefinitions="*, Auto">
+                            <TextBlock Grid.Column="0" 
+                                      Text="Devices"
+                                      Classes="SidebarHeaderTextStyle" />
+                            <Button Grid.Column="1" 
+                                   Content="Close"
+                                   Command="{Binding CloseSidebarCommand}"
+                                   Padding="10,5"
+                                   HorizontalAlignment="Right" />
+                        </Grid>
+                    </Border>
+                    
+                    <!-- Sidebar Content -->
+                    <ScrollViewer Grid.Row="1" 
+                                 Classes="SidebarContentStyle">
+                        <StackPanel Classes="SidebarStackPanelStyle">
+                            <!-- Device Expander -->
+                            <local:DeviceExpanderView />
+                            
+                            <!-- Event Expander -->
+                            <local:EventExpanderView />
+                            
+                            <!-- Notification Expander -->
+                            <local:NotificationExpanderView />
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+
+            <!-- Main Content Area -->
+            <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
+                <Grid RowDefinitions="Auto, *">
+                    <!-- Top Bar: Button + Tabs + Button -->
+                    <Border Grid.Row="0" 
+                           Classes="TopBarBorderStyle">
+                        <Grid ColumnDefinitions="Auto, *, Auto">
+                        
+                        <!-- Left Button (Device) - chỉ hiện khi sidebar đóng -->
+                        <Button Grid.Column="0" 
+                               Content="Device" 
+                               Command="{Binding OpenSidebarCommand}"
+                               Classes="TopBarButtonStyle"
+                               Margin="0,0,10,0"
+                               IsVisible="{Binding IsDeviceButtonVisible}" />
+                        
+                        <!-- Drop Zone - TabControl area -->
+                        <Border Grid.Column="1"
+                               Name="DropZoneBorder"
+                               Classes="DropZoneBorderStyle"
+                               DragDrop.AllowDrop="True"
+                               DragDrop.DragOver="TabControl_DragOver"
+                               DragDrop.Drop="TabControl_Drop"
+                               DragDrop.DragLeave="TabControl_DragLeave">
+                            <Border.Styles>
+                                <Style Selector="Border">
+                                    <Setter Property="Transitions">
+                                        <Transitions>
+                                            <BrushTransition Property="Background" Duration="0:0:0.2" />
+                                            <BrushTransition Property="BorderBrush" Duration="0:0:0.2" />
+                                        </Transitions>
+                                    </Setter>
+                                </Style>
+                            </Border.Styles>
+                            <Grid>
+                                <!-- StackPanel chứa các cặp (Tab + Button X) -->
+                                <StackPanel Name="TabContainerPanel"
+                                           Orientation="Horizontal"
+                                           HorizontalAlignment="Left"
+                                           IsVisible="False" />
           
-        </TabControlCustom>
+                                <!-- Drop hint text (shown when no tabs) -->
+                                <TextBlock Name="DropHintText"
+                                          Text="📥 Drop device here to create tab"
+                                          Classes="DropHintTextStyle" />
+                            </Grid>
+                        </Border>
+                        
+                        <!-- Right Buttons -->
+                        <StackPanel Grid.Column="2" 
+                                   Classes="RightButtonsStackPanelStyle">
+                            <Button Content="Layer" Classes="TopBarButtonStyle" />
+                            <Button Content="AI" Classes="TopBarButtonStyle" />
+            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <!-- Content Area -->
+                    <Border Grid.Row="1" 
+                           Classes="ContentAreaBorderStyle">
+                        <ContentControl Name="TabContentControl">
+                            <!-- Content will be set dynamically when tabs are selected -->
+                        </ContentControl>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Grid>    
+   
 </UserControl>

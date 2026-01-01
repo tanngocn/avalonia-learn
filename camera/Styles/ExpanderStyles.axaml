@@ -1,0 +1,158 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!-- Event Expander Base Style -->
+    <Style Selector="Expander.EventExpanderStyle">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    </Style>
+    
+    <!-- Event Expander ToggleButton Style -->
+    <Style Selector="Expander.EventExpanderStyle /template/ ToggleButton">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Padding" Value="10,8" />
+        <Setter Property="Background" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <!-- Event Expander Expanded ToggleButton Style -->
+    <Style Selector="Expander.EventExpanderStyle:expanded /template/ ToggleButton">
+        <Setter Property="Background" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <!-- Event Expander ToggleButton Path (Arrow/Caret) - Style all Path elements -->
+    <Style Selector="Expander.EventExpanderStyle Path">
+        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+    </Style>
+    
+    <!-- Event Expander ToggleButton Path in template -->
+    <Style Selector="Expander.EventExpanderStyle /template/ Path">
+        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+    </Style>
+    
+    <!-- Event Expander ToggleButton Path in ToggleButton template -->
+    <Style Selector="Expander.EventExpanderStyle /template/ ToggleButton /template/ Path">
+        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+    </Style>
+    
+    <!-- Event Expander ToggleButton Path anywhere in ToggleButton -->
+    <Style Selector="Expander.EventExpanderStyle /template/ ToggleButton Path">
+        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+    </Style>
+    
+    <!-- Event Expander ToggleButton - Keep text white -->
+    <Style Selector="Expander.EventExpanderStyle /template/ ToggleButton /template/ ContentPresenter TextBlock">
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <!-- Try to style Path in Grid/StackPanel/Panel -->
+    <Style Selector="Expander.EventExpanderStyle /template/ ToggleButton Grid Path">
+        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+    </Style>
+    
+    <Style Selector="Expander.EventExpanderStyle /template/ ToggleButton StackPanel Path">
+        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+    </Style>
+    
+    <Style Selector="Expander.EventExpanderStyle /template/ ToggleButton Panel Path">
+        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+    </Style>
+    
+    <!-- Event Expander ContentPresenter Style -->
+    <Style Selector="Expander.EventExpanderStyle /template/ ContentPresenter">
+        <Setter Property="Padding" Value="5,5,5,10" />
+        <Setter Property="Background" Value="White" />
+    </Style>
+    
+    <!-- Event Expander Border Style -->
+    <Style Selector="Expander.EventExpanderStyle /template/ Border">
+        <Setter Property="Background" Value="White" />
+    </Style>
+    
+    <!-- Notification Expander Base Style -->
+    <Style Selector="Expander.NotificationExpanderStyle">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    </Style>
+    
+    <!-- Notification Expander ToggleButton Style -->
+    <Style Selector="Expander.NotificationExpanderStyle /template/ ToggleButton">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Padding" Value="10,8" />
+        <Setter Property="Background" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <!-- Notification Expander Expanded ToggleButton Style -->
+    <Style Selector="Expander.NotificationExpanderStyle:expanded /template/ ToggleButton">
+        <Setter Property="Background" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <!-- Notification Expander ToggleButton Path (Arrow/Caret) - Style all Path elements -->
+    <Style Selector="Expander.NotificationExpanderStyle Path">
+        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+    </Style>
+    
+    <!-- Notification Expander ToggleButton Path in template -->
+    <Style Selector="Expander.NotificationExpanderStyle /template/ Path">
+        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+    </Style>
+    
+    <!-- Notification Expander ToggleButton Path in ToggleButton template -->
+    <Style Selector="Expander.NotificationExpanderStyle /template/ ToggleButton /template/ Path">
+        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+    </Style>
+    
+    <!-- Notification Expander ToggleButton Path anywhere in ToggleButton -->
+    <Style Selector="Expander.NotificationExpanderStyle /template/ ToggleButton Path">
+        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+    </Style>
+    
+    <!-- Notification Expander ToggleButton - Keep text white -->
+    <Style Selector="Expander.NotificationExpanderStyle /template/ ToggleButton /template/ ContentPresenter TextBlock">
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <!-- Try to style Path in Grid/StackPanel/Panel -->
+    <Style Selector="Expander.NotificationExpanderStyle /template/ ToggleButton Grid Path">
+        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+    </Style>
+    
+    <Style Selector="Expander.NotificationExpanderStyle /template/ ToggleButton StackPanel Path">
+        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+    </Style>
+    
+    <Style Selector="Expander.NotificationExpanderStyle /template/ ToggleButton Panel Path">
+        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+    </Style>
+    
+    <!-- Notification Expander ContentPresenter Style -->
+    <Style Selector="Expander.NotificationExpanderStyle /template/ ContentPresenter">
+        <Setter Property="Padding" Value="5,5,5,10" />
+        <Setter Property="Background" Value="White" />
+    </Style>
+    
+    <!-- Notification Expander Border Style -->
+    <Style Selector="Expander.NotificationExpanderStyle /template/ Border">
+        <Setter Property="Background" Value="White" />
+    </Style>
+</Styles>
+

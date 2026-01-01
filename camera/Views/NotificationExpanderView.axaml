@@ -1,0 +1,51 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:camera.ViewModels"
+             x:Class="camera.Views.NotificationExpanderView"
+             x:DataType="vm:NotificationExpanderViewModel">
+    
+    <Design.DataContext>
+        <vm:NotificationExpanderViewModel />
+    </Design.DataContext>
+
+    <Expander Header="Notification" 
+             Classes="NotificationExpanderStyle"
+             IsExpanded="False"
+             Margin="0,0,0,10"
+             HorizontalAlignment="Stretch">
+        <ScrollViewer MaxHeight="300">
+            <ItemsControl ItemsSource="{Binding Notifications}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="#FFF4E6" 
+                               BorderBrush="#FFD700"
+                               BorderThickness="1"
+                               CornerRadius="4"
+                               Padding="10"
+                               Margin="0,0,0,5">
+                            <Grid ColumnDefinitions="*, Auto">
+                                <StackPanel Grid.Column="0" Spacing="3">
+                                    <TextBlock Text="{Binding Message}" 
+                                              FontWeight="Bold"
+                                              TextWrapping="Wrap" />
+                                    <TextBlock Text="{Binding Time}" 
+                                              FontSize="10"
+                                              Foreground="Gray" />
+                                </StackPanel>
+                                <Button Grid.Column="1" 
+                                       Content="×"
+                                       Click="DismissButton_Click"
+                                       Tag="{Binding}"
+                                       Width="24"
+                                       Height="24"
+                                       Padding="0"
+                                       Margin="5,0,0,0" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Expander>
+</UserControl>
+

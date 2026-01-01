@@ -1,0 +1,43 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:camera.ViewModels"
+             x:Class="camera.Views.EventExpanderView"
+             x:DataType="vm:EventExpanderViewModel">
+    
+    <Design.DataContext>
+        <vm:EventExpanderViewModel />
+    </Design.DataContext>
+
+    <Expander Header="Event" 
+             Classes="EventExpanderStyle"
+             IsExpanded="False"
+             Margin="0,0,0,10"
+             HorizontalAlignment="Stretch">
+        <ScrollViewer MaxHeight="300">
+            <ItemsControl ItemsSource="{Binding Events}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="#F0F0F0" 
+                               BorderBrush="#E0E0E0"
+                               BorderThickness="1"
+                               CornerRadius="4"
+                               Padding="10"
+                               Margin="0,0,0,5">
+                            <StackPanel Spacing="5">
+                                <TextBlock Text="{Binding Title}" 
+                                          FontWeight="Bold" />
+                                <TextBlock Text="{Binding Description}" 
+                                          FontSize="12"
+                                          TextWrapping="Wrap" />
+                                <TextBlock Text="{Binding Timestamp}" 
+                                          FontSize="10"
+                                          Foreground="Gray" />
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Expander>
+</UserControl>
+

@@ -92,7 +92,7 @@
             </DataGrid>
         </Grid>
         <Grid Grid.Row="2" Grid.ColumnSpan="5">
-            <TextBlock Text="hello"></TextBlock>
+            <ComboBox SelectedItem="{Binding SelectedTypeBookItem}" DisplayMemberBinding="{Binding Value}" ItemsSource="{Binding TypeBook}"></ComboBox>
         </Grid>
     </Grid>
 </UserControl>

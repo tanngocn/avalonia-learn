@@ -1,0 +1,44 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!-- Dialog Container Border Style -->
+    <Style Selector="Border.DialogContainerBorderStyle">
+        <Setter Property="Background" Value="{DynamicResource PrimaryBgColor}" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="ClipToBounds" Value="True" />
+        <Setter Property="BorderBrush" Value="Gray" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Margin" Value="10" />
+    </Style>
+    
+    <!-- Dialog Header Border Style -->
+    <Style Selector="Border.DialogHeaderBorderStyle">
+        <Setter Property="Background" Value="Black" />
+        <Setter Property="CornerRadius" Value="10,10,0,0" />
+        <Setter Property="Padding" Value="10" />
+    </Style>
+    
+    <!-- Dialog Content Border Style -->
+    <Style Selector="Border.DialogContentBorderStyle">
+        <Setter Property="Padding" Value="20" />
+    </Style>
+    
+    <!-- Dialog Form StackPanel Style -->
+    <Style Selector="StackPanel.DialogFormStackPanelStyle">
+        <Setter Property="Orientation" Value="Vertical" />
+        <Setter Property="Spacing" Value="10" />
+    </Style>
+    
+    <!-- Dialog Buttons StackPanel Style -->
+    <Style Selector="StackPanel.DialogButtonsStackPanelStyle">
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="Orientation" Value="Horizontal" />
+        <Setter Property="Spacing" Value="10" />
+    </Style>
+    
+    <!-- Dialog CheckBox Style -->
+    <Style Selector="CheckBox.DialogCheckBoxStyle">
+        <Setter Property="Margin" Value="0,10,0,0" />
+    </Style>
+</Styles>
+

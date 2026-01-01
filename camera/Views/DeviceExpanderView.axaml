@@ -1,0 +1,33 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:camera.ViewModels"
+             x:Class="camera.Views.DeviceExpanderView"
+             x:DataType="vm:DeviceExpanderViewModel">
+    
+    <Design.DataContext>
+        <vm:DeviceExpanderViewModel />
+    </Design.DataContext>
+
+    <Expander Header="Device" 
+             Classes="DeviceExpanderStyle"
+             IsExpanded="True"
+             Margin="0,0,0,10"
+             HorizontalAlignment="Stretch">
+        <TreeView ItemsSource="{Binding Devices}"
+                 Classes="DeviceTreeViewStyle"
+                 HorizontalAlignment="Stretch"
+                 MaxHeight="400"
+                 Name="DeviceTreeView">
+            <TreeView.ItemTemplate>
+                <TreeDataTemplate ItemsSource="{Binding Children}">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock Text="{Binding Name}" 
+                                  VerticalAlignment="Center"
+                                  Margin="0,0,0,0" />
+                    </StackPanel>
+                </TreeDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+    </Expander>
+</UserControl>
+

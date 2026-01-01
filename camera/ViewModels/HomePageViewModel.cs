@@ -213,19 +213,51 @@ public partial class HomePageViewModel : PageViewModel
         
         try
         {
+            var invalidOverlays = new List<Control>();
+            
             foreach (var kv in _overlays.ToArray())
             {
                 // Only update if container is still valid
                 if (kv.Key != null && kv.Value != null)
                 {
-                    UpdateOverlayBoundsForElement(kv.Value, kv.Key);
+                    // Try to update - UpdateOverlayBoundsForElement will handle if control is not in visual tree
+                    try
+                    {
+                        UpdateOverlayBoundsForElement(kv.Value, kv.Key);
+                    }
+                    catch (ArgumentException)
+                    {
+                        // Control is not in visual tree, mark for removal
+                        invalidOverlays.Add(kv.Key);
+                    }
+                }
+                else
+                {
+                    // Null key or value, mark for removal
+                    if (kv.Key != null) invalidOverlays.Add(kv.Key);
+                }
+            }
+            
+            // Remove invalid overlays to prevent spam
+            foreach (var invalidKey in invalidOverlays)
+            {
+                if (_overlays.TryGetValue(invalidKey, out var overlay))
+                {
+                    try
+                    {
+                        overlay?.Hide();
+                        overlay?.Close();
+                    }
+                    catch { /* Ignore errors when closing */ }
+                    _overlays.Remove(invalidKey);
+                    _lastOverlayBounds.Remove(invalidKey);
                 }
             }
         }
         catch (Exception ex)
         {
             // Silently handle errors to prevent timer from stopping
-            System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] Error in overlay update: {ex.Message}");
+            // System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] Error in overlay update: {ex.Message}");
         }
     }
     
@@ -249,11 +281,11 @@ public partial class HomePageViewModel : PageViewModel
                 overlay.UpdateCenteredBox();
             }
             
-            System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] 🔄 Overlay moved to position {_overlayPositionIndex}: ({newPosition.X}, {newPosition.Y})");
+            // System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] 🔄 Overlay moved to position {_overlayPositionIndex}: ({newPosition.X}, {newPosition.Y})");
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] Error in overlay position update: {ex.Message}");
+            // System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] Error in overlay position update: {ex.Message}");
         }
     }
 
@@ -313,7 +345,7 @@ public partial class HomePageViewModel : PageViewModel
         // Hook into Playing event
         e.MediaPlayer.Playing += (_, _) =>
         {
-            System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] ▶️ Video playing - overlay window should be visible");
+            // System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] ▶️ Video playing - overlay window should be visible");
         };
     }
 
@@ -322,15 +354,15 @@ public partial class HomePageViewModel : PageViewModel
     /// </summary>
     internal void CreateOverlayForTile(VideoTileVm tile, OverlayConfig config)
     {
-        System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] 🔧 CreateOverlayForTile called");
+        // System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] 🔧 CreateOverlayForTile called");
         
         if (tile.VideoContainer == null)
         {
-            System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] ⚠️ Video container not available yet, overlay will be created when container loads");
+            // System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] ⚠️ Video container not available yet, overlay will be created when container loads");
             return;
         }
 
-        System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] ✅ Video container found: {tile.VideoContainer.GetType().Name}, IsVisible={tile.VideoContainer.IsVisible}, Bounds={tile.VideoContainer.Bounds}");
+        // System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] ✅ Video container found: {tile.VideoContainer.GetType().Name}, IsVisible={tile.VideoContainer.IsVisible}, Bounds={tile.VideoContainer.Bounds}");
 
         // Close existing overlay window if any
         if (_overlays.TryGetValue(tile.VideoContainer, out var existingOverlay))
@@ -341,7 +373,7 @@ public partial class HomePageViewModel : PageViewModel
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] Error closing existing overlay: {ex.Message}");
+                // System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] Error closing existing overlay: {ex.Message}");
             }
             _overlays.Remove(tile.VideoContainer);
         }
@@ -359,7 +391,7 @@ public partial class HomePageViewModel : PageViewModel
             Topmost = false // False = overlay only shows within app, not above other apps
         };
 
-        System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] ✅ OverlayWindow created (not shown yet)");
+        // System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] ✅ OverlayWindow created (not shown yet)");
 
         // Store in both dictionary and tile property
         _overlays[tile.VideoContainer] = overlayWindow;
@@ -370,23 +402,23 @@ public partial class HomePageViewModel : PageViewModel
         {
             _overlayUpdateHooked = true;
             _overlayUpdateTimer.Start();
-            System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] ✅ Overlay update timer started");
+            // System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] ✅ Overlay update timer started");
         }
 
             // Show overlay window
             overlayWindow.Show();
-        System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] ✅ OverlayWindow.Show() called");
+        // System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] ✅ OverlayWindow.Show() called");
 
         // Update overlay bounds immediately
                 UpdateOverlayBoundsForElement(overlayWindow, tile.VideoContainer);
 
-        System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] ✅ OverlayWindow created and configured:");
-        System.Diagnostics.Debug.WriteLine($"[HomePageViewModel]   Label: {config.LabelText}");
-        System.Diagnostics.Debug.WriteLine($"[HomePageViewModel]   BoxSizeNorm: ({config.BoxSizeNorm.Width}, {config.BoxSizeNorm.Height})");
-        System.Diagnostics.Debug.WriteLine($"[HomePageViewModel]   Topmost: {config.Topmost}");
-        System.Diagnostics.Debug.WriteLine($"[HomePageViewModel]   Overlay IsVisible: {overlayWindow.IsVisible}");
-        System.Diagnostics.Debug.WriteLine($"[HomePageViewModel]   Overlay Position: {overlayWindow.Position}");
-        System.Diagnostics.Debug.WriteLine($"[HomePageViewModel]   Overlay Size: {overlayWindow.Width}x{overlayWindow.Height}");
+        // System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] ✅ OverlayWindow created and configured:");
+        // System.Diagnostics.Debug.WriteLine($"[HomePageViewModel]   Label: {config.LabelText}");
+        // System.Diagnostics.Debug.WriteLine($"[HomePageViewModel]   BoxSizeNorm: ({config.BoxSizeNorm.Width}, {config.BoxSizeNorm.Height})");
+        // System.Diagnostics.Debug.WriteLine($"[HomePageViewModel]   Topmost: {config.Topmost}");
+        // System.Diagnostics.Debug.WriteLine($"[HomePageViewModel]   Overlay IsVisible: {overlayWindow.IsVisible}");
+        // System.Diagnostics.Debug.WriteLine($"[HomePageViewModel]   Overlay Position: {overlayWindow.Position}");
+        // System.Diagnostics.Debug.WriteLine($"[HomePageViewModel]   Overlay Size: {overlayWindow.Width}x{overlayWindow.Height}");
     }
 
     /// <summary>
@@ -443,13 +475,26 @@ public partial class HomePageViewModel : PageViewModel
                 return;
             }
 
-            // Get screen position of the element
-            var pointToScreen = element.PointToScreen(new Point(0, 0));
-            var mainWindowScreenPos = mainWindow.PointToScreen(new Point(0, 0));
-            var mainWindowBounds = mainWindow.Bounds;
+            // Try to get screen position - this will throw if element is not in visual tree
+            PixelPoint pointToScreen;
+            PixelPoint mainWindowScreenPos;
+            Rect mainWindowBounds;
+            
+            try
+            {
+                pointToScreen = element.PointToScreen(new Point(0, 0));
+                mainWindowScreenPos = mainWindow.PointToScreen(new Point(0, 0));
+                mainWindowBounds = mainWindow.Bounds;
+            }
+            catch (ArgumentException)
+            {
+                // Control is not in visual tree, hide overlay and return silently
+                overlay.Hide();
+                return;
+            }
 
             // Calculate overlay position relative to element
-            var newPosition = new PixelPoint((int)pointToScreen.X, (int)pointToScreen.Y);
+            var newPosition = pointToScreen;
             var newWidth = Math.Max(1, bounds.Width);
             var newHeight = Math.Max(1, bounds.Height);
 
@@ -534,7 +579,7 @@ public partial class HomePageViewModel : PageViewModel
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] ❌ Error updating overlay bounds: {ex.Message}");
+            // System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] ❌ Error updating overlay bounds: {ex.Message}");
         }
     }
     
@@ -564,7 +609,7 @@ public partial class HomePageViewModel : PageViewModel
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] Error closing overlay: {ex.Message}");
+                    // System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] Error closing overlay: {ex.Message}");
                 }
             }
             _overlays.Clear();
@@ -591,25 +636,25 @@ public partial class HomePageViewModel : PageViewModel
         var tile = Tiles.FirstOrDefault(t => ReferenceEquals(t.MediaPlayer, mediaPlayer));
         if (tile is null) return;
 
-        System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] Media added for tile, checking overlay...");
-        System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] OverlayWindow: {(tile.OverlayWindow != null ? "created" : "null")}");
+        // System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] Media added for tile, checking overlay...");
+        // System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] OverlayWindow: {(tile.OverlayWindow != null ? "created" : "null")}");
 
         // Verify overlay window is initialized
-        if (tile.OverlayWindow != null)
-        {
-            System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] ✅ OverlayWindow created and ready");
-            System.Diagnostics.Debug.WriteLine($"[HomePageViewModel]   Label: {tile.OverlayWindow.LabelText}");
-            System.Diagnostics.Debug.WriteLine($"[HomePageViewModel]   BoxSizeNorm: ({tile.OverlayWindow.BoxSizeNorm.Width}, {tile.OverlayWindow.BoxSizeNorm.Height})");
-        }
-        else
-        {
-            System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] ⚠️ No OverlayWindow found for this tile");
-        }
+        // if (tile.OverlayWindow != null)
+        // {
+        //     System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] ✅ OverlayWindow created and ready");
+        //     System.Diagnostics.Debug.WriteLine($"[HomePageViewModel]   Label: {tile.OverlayWindow.LabelText}");
+        //     System.Diagnostics.Debug.WriteLine($"[HomePageViewModel]   BoxSizeNorm: ({tile.OverlayWindow.BoxSizeNorm.Width}, {tile.OverlayWindow.BoxSizeNorm.Height})");
+        // }
+        // else
+        // {
+        //     System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] ⚠️ No OverlayWindow found for this tile");
+        // }
 
         // Hook into Playing event to verify overlay is active when video starts
         mediaPlayer.Playing += (_, _) =>
         {
-            System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] ▶️ Video playing - overlay window should be visible");
+            // System.Diagnostics.Debug.WriteLine($"[HomePageViewModel] ▶️ Video playing - overlay window should be visible");
         };
     }
 

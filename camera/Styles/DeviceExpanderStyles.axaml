@@ -5,6 +5,7 @@
     <Style Selector="Expander.DeviceExpanderStyle">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Padding" Value="0" />
     </Style>
     
     <!-- Expander ToggleButton Style -->
@@ -24,28 +25,70 @@
         <Setter Property="Foreground" Value="White" />
     </Style>
     
+    <!-- Device Expander ToggleButton Hover Style -->
+    <Style Selector="Expander.DeviceExpanderStyle /template/ ToggleButton:pointerover">
+        <Setter Property="Background" Value="#29B6F6" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <!-- Device Expander ToggleButton Hover Style - Override ContentPresenter -->
+    <Style Selector="Expander.DeviceExpanderStyle /template/ ToggleButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#29B6F6" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <!-- Device Expander ToggleButton Hover Style - Override Border/Panel -->
+    <Style Selector="Expander.DeviceExpanderStyle /template/ ToggleButton:pointerover Border">
+        <Setter Property="Background" Value="#29B6F6" />
+    </Style>
+    
+    <Style Selector="Expander.DeviceExpanderStyle /template/ ToggleButton:pointerover Panel">
+        <Setter Property="Background" Value="#29B6F6" />
+    </Style>
+    
+    <!-- Device Expander ToggleButton Hover Style (Expanded) -->
+    <Style Selector="Expander.DeviceExpanderStyle:expanded /template/ ToggleButton:pointerover">
+        <Setter Property="Background" Value="#29B6F6" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <!-- Device Expander ToggleButton Hover Style (Expanded) - Override ContentPresenter -->
+    <Style Selector="Expander.DeviceExpanderStyle:expanded /template/ ToggleButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#29B6F6" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <!-- Device Expander ToggleButton Hover Style (Expanded) - Override Border/Panel -->
+    <Style Selector="Expander.DeviceExpanderStyle:expanded /template/ ToggleButton:pointerover Border">
+        <Setter Property="Background" Value="#29B6F6" />
+    </Style>
+    
+    <Style Selector="Expander.DeviceExpanderStyle:expanded /template/ ToggleButton:pointerover Panel">
+        <Setter Property="Background" Value="#29B6F6" />
+    </Style>
+    
     <!-- Expander ToggleButton Path (Arrow/Caret) - Style all Path elements -->
     <Style Selector="Expander.DeviceExpanderStyle Path">
-        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
-        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Fill" Value="White" />
+        <Setter Property="Stroke" Value="White" />
     </Style>
     
     <!-- Expander ToggleButton Path in template -->
     <Style Selector="Expander.DeviceExpanderStyle /template/ Path">
-        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
-        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Fill" Value="White" />
+        <Setter Property="Stroke" Value="White" />
     </Style>
     
     <!-- Expander ToggleButton Path in ToggleButton template -->
     <Style Selector="Expander.DeviceExpanderStyle /template/ ToggleButton /template/ Path">
-        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
-        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Fill" Value="White" />
+        <Setter Property="Stroke" Value="White" />
     </Style>
     
     <!-- Expander ToggleButton Path anywhere in ToggleButton -->
     <Style Selector="Expander.DeviceExpanderStyle /template/ ToggleButton Path">
-        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
-        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Fill" Value="White" />
+        <Setter Property="Stroke" Value="White" />
     </Style>
     
     <!-- Expander ToggleButton - Style arrow using Foreground (if arrow uses Foreground) -->
@@ -56,29 +99,30 @@
     
     <!-- Try to style Path in Grid/StackPanel/Panel -->
     <Style Selector="Expander.DeviceExpanderStyle /template/ ToggleButton Grid Path">
-        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
-        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Fill" Value="White" />
+        <Setter Property="Stroke" Value="White" />
     </Style>
     
     <Style Selector="Expander.DeviceExpanderStyle /template/ ToggleButton StackPanel Path">
-        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
-        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Fill" Value="White" />
+        <Setter Property="Stroke" Value="White" />
     </Style>
     
     <Style Selector="Expander.DeviceExpanderStyle /template/ ToggleButton Panel Path">
-        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
-        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Fill" Value="White" />
+        <Setter Property="Stroke" Value="White" />
     </Style>
     
     <!-- Expander ContentPresenter Style -->
     <Style Selector="Expander.DeviceExpanderStyle /template/ ContentPresenter">
-        <Setter Property="Padding" Value="8,8,8,12" />
+        <Setter Property="Padding" Value="0,8,0,12" />
         <Setter Property="Background" Value="White" />
     </Style>
     
     <!-- Expander Border Style -->
     <Style Selector="Expander.DeviceExpanderStyle /template/ Border">
         <Setter Property="Background" Value="White" />
+        <Setter Property="Padding" Value="0" />
     </Style>
     
     <!-- TreeView Base Style -->
@@ -132,6 +176,46 @@
     <!-- TreeViewItem Focus ContentPresenter Style -->
     <Style Selector="TreeViewItem.DeviceTreeViewItemStyle:focus /template/ ContentPresenter">
         <Setter Property="Background" Value="#F0F0F0" />
+    </Style>
+    
+    <!-- TreeViewItem Expander Arrow (Path) - Keep PrimaryColor (teal) -->
+    <Style Selector="TreeViewItem.DeviceTreeViewItemStyle Path">
+        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+    </Style>
+    
+    <!-- TreeViewItem Expander Arrow in template -->
+    <Style Selector="TreeViewItem.DeviceTreeViewItemStyle /template/ Path">
+        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+    </Style>
+    
+    <!-- TreeViewItem Expander Arrow in ToggleButton template -->
+    <Style Selector="TreeViewItem.DeviceTreeViewItemStyle /template/ ToggleButton /template/ Path">
+        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+    </Style>
+    
+    <!-- TreeViewItem Expander Arrow anywhere in ToggleButton -->
+    <Style Selector="TreeViewItem.DeviceTreeViewItemStyle /template/ ToggleButton Path">
+        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+    </Style>
+    
+    <!-- TreeViewItem Expander Arrow in Grid/StackPanel/Panel -->
+    <Style Selector="TreeViewItem.DeviceTreeViewItemStyle /template/ ToggleButton Grid Path">
+        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+    </Style>
+    
+    <Style Selector="TreeViewItem.DeviceTreeViewItemStyle /template/ ToggleButton StackPanel Path">
+        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+    </Style>
+    
+    <Style Selector="TreeViewItem.DeviceTreeViewItemStyle /template/ ToggleButton Panel Path">
+        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
     </Style>
 </Styles>
 

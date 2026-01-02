@@ -1,10 +1,32 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
+    <!-- Common Expander ToggleButton Hover Style - Apply to all expanders -->
+    <Style Selector="Expander /template/ ToggleButton:pointerover">
+        <Setter Property="Background" Value="#29B6F6" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <!-- Common Expander ToggleButton Hover Style - Override ContentPresenter -->
+    <Style Selector="Expander /template/ ToggleButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#29B6F6" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <!-- Common Expander ToggleButton Hover Style - Override Border/Panel -->
+    <Style Selector="Expander /template/ ToggleButton:pointerover Border">
+        <Setter Property="Background" Value="#29B6F6" />
+    </Style>
+    
+    <Style Selector="Expander /template/ ToggleButton:pointerover Panel">
+        <Setter Property="Background" Value="#29B6F6" />
+    </Style>
+    
     <!-- Event Expander Base Style -->
     <Style Selector="Expander.EventExpanderStyle">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Padding" Value="0" />
     </Style>
     
     <!-- Event Expander ToggleButton Style -->
@@ -22,28 +44,71 @@
         <Setter Property="Foreground" Value="White" />
     </Style>
     
+    <!-- Event Expander ToggleButton Hover Style - Override with higher specificity -->
+    <Style Selector="Expander.EventExpanderStyle /template/ ToggleButton:pointerover">
+        <Setter Property="Background" Value="#29B6F6" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <!-- Event Expander ToggleButton Hover Style - Override ContentPresenter -->
+    <Style Selector="Expander.EventExpanderStyle /template/ ToggleButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#29B6F6" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <!-- Event Expander ToggleButton Hover Style - Override any Border in template -->
+    <Style Selector="Expander.EventExpanderStyle /template/ ToggleButton:pointerover Border">
+        <Setter Property="Background" Value="#29B6F6" />
+    </Style>
+    
+    <!-- Event Expander ToggleButton Hover Style - Override any Panel in template -->
+    <Style Selector="Expander.EventExpanderStyle /template/ ToggleButton:pointerover Panel">
+        <Setter Property="Background" Value="#29B6F6" />
+    </Style>
+    
+    <!-- Event Expander ToggleButton Hover Style (Expanded) -->
+    <Style Selector="Expander.EventExpanderStyle:expanded /template/ ToggleButton:pointerover">
+        <Setter Property="Background" Value="#29B6F6" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <!-- Event Expander ToggleButton Hover Style (Expanded) - Override ContentPresenter -->
+    <Style Selector="Expander.EventExpanderStyle:expanded /template/ ToggleButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#29B6F6" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <!-- Event Expander ToggleButton Hover Style (Expanded) - Override Border/Panel -->
+    <Style Selector="Expander.EventExpanderStyle:expanded /template/ ToggleButton:pointerover Border">
+        <Setter Property="Background" Value="#29B6F6" />
+    </Style>
+    
+    <Style Selector="Expander.EventExpanderStyle:expanded /template/ ToggleButton:pointerover Panel">
+        <Setter Property="Background" Value="#29B6F6" />
+    </Style>
+    
     <!-- Event Expander ToggleButton Path (Arrow/Caret) - Style all Path elements -->
     <Style Selector="Expander.EventExpanderStyle Path">
-        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
-        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Fill" Value="White" />
+        <Setter Property="Stroke" Value="White" />
     </Style>
     
     <!-- Event Expander ToggleButton Path in template -->
     <Style Selector="Expander.EventExpanderStyle /template/ Path">
-        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
-        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Fill" Value="White" />
+        <Setter Property="Stroke" Value="White" />
     </Style>
     
     <!-- Event Expander ToggleButton Path in ToggleButton template -->
     <Style Selector="Expander.EventExpanderStyle /template/ ToggleButton /template/ Path">
-        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
-        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Fill" Value="White" />
+        <Setter Property="Stroke" Value="White" />
     </Style>
     
     <!-- Event Expander ToggleButton Path anywhere in ToggleButton -->
     <Style Selector="Expander.EventExpanderStyle /template/ ToggleButton Path">
-        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
-        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Fill" Value="White" />
+        <Setter Property="Stroke" Value="White" />
     </Style>
     
     <!-- Event Expander ToggleButton - Keep text white -->
@@ -53,35 +118,116 @@
     
     <!-- Try to style Path in Grid/StackPanel/Panel -->
     <Style Selector="Expander.EventExpanderStyle /template/ ToggleButton Grid Path">
-        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
-        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Fill" Value="White" />
+        <Setter Property="Stroke" Value="White" />
     </Style>
     
     <Style Selector="Expander.EventExpanderStyle /template/ ToggleButton StackPanel Path">
-        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
-        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Fill" Value="White" />
+        <Setter Property="Stroke" Value="White" />
     </Style>
     
     <Style Selector="Expander.EventExpanderStyle /template/ ToggleButton Panel Path">
-        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
-        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Fill" Value="White" />
+        <Setter Property="Stroke" Value="White" />
     </Style>
     
     <!-- Event Expander ContentPresenter Style -->
     <Style Selector="Expander.EventExpanderStyle /template/ ContentPresenter">
-        <Setter Property="Padding" Value="5,5,5,10" />
+        <Setter Property="Padding" Value="0,5,0,10" />
         <Setter Property="Background" Value="White" />
     </Style>
     
     <!-- Event Expander Border Style -->
     <Style Selector="Expander.EventExpanderStyle /template/ Border">
         <Setter Property="Background" Value="White" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+    
+    <!-- Event Timeline Container Style -->
+    <Style Selector="Border.EventTimelineContainerStyle">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="BorderBrush" Value="#20B2AA" />
+        <Setter Property="BorderThickness" Value="0,1,0,1" />
+        <Setter Property="Padding" Value="0,10" />
+    </Style>
+    
+    <!-- Event Timeline Grid Style -->
+    <Style Selector="Grid.EventTimelineGridStyle">
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+    </Style>
+    
+    <!-- Event Timeline ScrollViewer Style -->
+    <Style Selector="ScrollViewer.EventTimelineScrollViewerStyle">
+        <Setter Property="HorizontalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+    </Style>
+    
+    <!-- Event Timeline Item Style -->
+    <Style Selector="Grid.EventTimelineItemStyle">
+        <Setter Property="Margin" Value="0,0,0,4" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+    </Style>
+    
+    <!-- Event Timeline Line Style -->
+    <Style Selector="Border.EventTimelineLineStyle">
+        <Setter Property="Width" Value="2" />
+        <Setter Property="Background" Value="Black" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="Margin" Value="14,0,14,0" />
+        <Setter Property="ZIndex" Value="0" />
+    </Style>
+    
+    <!-- Event Timeline Marker Style -->
+    <Style Selector="Ellipse.EventTimelineMarkerStyle">
+        <Setter Property="Width" Value="8" />
+        <Setter Property="Height" Value="8" />
+        <Setter Property="Fill" Value="Black" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <!-- Margin: left/right để center trên line, top để align với title (card padding 10px + title center ~6.5px - marker half 4px = ~12.5px) -->
+        <Setter Property="Margin" Value="11,12,11,0" />
+        <Setter Property="ZIndex" Value="1" />
+    </Style>
+    
+    <!-- Event Card Style -->
+    <Style Selector="Border.EventCardStyle">
+        <Setter Property="Background" Value="#F5F5F5" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="Padding" Value="12,10" />
+        <Setter Property="Margin" Value="10,0,0,0" />
+    </Style>
+    
+    <!-- Event Title Style -->
+    <Style Selector="TextBlock.EventTitleStyle">
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="#424242" />
+        <Setter Property="Margin" Value="0,0,0,2" />
+    </Style>
+    
+    <!-- Event Description Style -->
+    <Style Selector="TextBlock.EventDescriptionStyle">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Foreground" Value="#757575" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="Margin" Value="0,0,0,2" />
+    </Style>
+    
+    <!-- Event Timestamp Style -->
+    <Style Selector="TextBlock.EventTimestampStyle">
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="Foreground" Value="#9E9E9E" />
     </Style>
     
     <!-- Notification Expander Base Style -->
     <Style Selector="Expander.NotificationExpanderStyle">
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Padding" Value="0" />
     </Style>
     
     <!-- Notification Expander ToggleButton Style -->
@@ -99,28 +245,70 @@
         <Setter Property="Foreground" Value="White" />
     </Style>
     
+    <!-- Notification Expander ToggleButton Hover Style -->
+    <Style Selector="Expander.NotificationExpanderStyle /template/ ToggleButton:pointerover">
+        <Setter Property="Background" Value="#29B6F6" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <!-- Notification Expander ToggleButton Hover Style - Override ContentPresenter -->
+    <Style Selector="Expander.NotificationExpanderStyle /template/ ToggleButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#29B6F6" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <!-- Notification Expander ToggleButton Hover Style - Override Border/Panel -->
+    <Style Selector="Expander.NotificationExpanderStyle /template/ ToggleButton:pointerover Border">
+        <Setter Property="Background" Value="#29B6F6" />
+    </Style>
+    
+    <Style Selector="Expander.NotificationExpanderStyle /template/ ToggleButton:pointerover Panel">
+        <Setter Property="Background" Value="#29B6F6" />
+    </Style>
+    
+    <!-- Notification Expander ToggleButton Hover Style (Expanded) -->
+    <Style Selector="Expander.NotificationExpanderStyle:expanded /template/ ToggleButton:pointerover">
+        <Setter Property="Background" Value="#29B6F6" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <!-- Notification Expander ToggleButton Hover Style (Expanded) - Override ContentPresenter -->
+    <Style Selector="Expander.NotificationExpanderStyle:expanded /template/ ToggleButton:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#29B6F6" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <!-- Notification Expander ToggleButton Hover Style (Expanded) - Override Border/Panel -->
+    <Style Selector="Expander.NotificationExpanderStyle:expanded /template/ ToggleButton:pointerover Border">
+        <Setter Property="Background" Value="#29B6F6" />
+    </Style>
+    
+    <Style Selector="Expander.NotificationExpanderStyle:expanded /template/ ToggleButton:pointerover Panel">
+        <Setter Property="Background" Value="#29B6F6" />
+    </Style>
+    
     <!-- Notification Expander ToggleButton Path (Arrow/Caret) - Style all Path elements -->
     <Style Selector="Expander.NotificationExpanderStyle Path">
-        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
-        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Fill" Value="White" />
+        <Setter Property="Stroke" Value="White" />
     </Style>
     
     <!-- Notification Expander ToggleButton Path in template -->
     <Style Selector="Expander.NotificationExpanderStyle /template/ Path">
-        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
-        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Fill" Value="White" />
+        <Setter Property="Stroke" Value="White" />
     </Style>
     
     <!-- Notification Expander ToggleButton Path in ToggleButton template -->
     <Style Selector="Expander.NotificationExpanderStyle /template/ ToggleButton /template/ Path">
-        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
-        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Fill" Value="White" />
+        <Setter Property="Stroke" Value="White" />
     </Style>
     
     <!-- Notification Expander ToggleButton Path anywhere in ToggleButton -->
     <Style Selector="Expander.NotificationExpanderStyle /template/ ToggleButton Path">
-        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
-        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Fill" Value="White" />
+        <Setter Property="Stroke" Value="White" />
     </Style>
     
     <!-- Notification Expander ToggleButton - Keep text white -->
@@ -130,29 +318,30 @@
     
     <!-- Try to style Path in Grid/StackPanel/Panel -->
     <Style Selector="Expander.NotificationExpanderStyle /template/ ToggleButton Grid Path">
-        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
-        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Fill" Value="White" />
+        <Setter Property="Stroke" Value="White" />
     </Style>
     
     <Style Selector="Expander.NotificationExpanderStyle /template/ ToggleButton StackPanel Path">
-        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
-        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Fill" Value="White" />
+        <Setter Property="Stroke" Value="White" />
     </Style>
     
     <Style Selector="Expander.NotificationExpanderStyle /template/ ToggleButton Panel Path">
-        <Setter Property="Fill" Value="{DynamicResource PrimaryColor}" />
-        <Setter Property="Stroke" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="Fill" Value="White" />
+        <Setter Property="Stroke" Value="White" />
     </Style>
     
     <!-- Notification Expander ContentPresenter Style -->
     <Style Selector="Expander.NotificationExpanderStyle /template/ ContentPresenter">
-        <Setter Property="Padding" Value="5,5,5,10" />
+        <Setter Property="Padding" Value="0,5,0,10" />
         <Setter Property="Background" Value="White" />
     </Style>
     
     <!-- Notification Expander Border Style -->
     <Style Selector="Expander.NotificationExpanderStyle /template/ Border">
         <Setter Property="Background" Value="White" />
+        <Setter Property="Padding" Value="0" />
     </Style>
 </Styles>
 

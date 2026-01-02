@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
-using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
-using camera.Data;
 using camera.ViewModels;
-using camera.Controls;
-using camera.Factories;
+
 
 namespace camera.Views;
 

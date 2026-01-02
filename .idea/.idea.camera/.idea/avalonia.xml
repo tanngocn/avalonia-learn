@@ -13,6 +13,7 @@
         <entry key="camera/Controls/TabItemCustom.axaml" value="camera/camera.csproj" />
         <entry key="camera/Controls/TabStripItem.axaml" value="camera/camera.csproj" />
         <entry key="camera/Styles/AppStyle.axaml" value="camera/camera.csproj" />
+        <entry key="camera/Styles/ExpanderStyles.axaml" value="camera/camera.csproj" />
         <entry key="camera/Views/AddLivePrintDialogView.axaml" value="camera/camera.csproj" />
         <entry key="camera/Views/AddLivePrintView.axaml" value="camera/camera.csproj" />
         <entry key="camera/Views/ConfirmDialogView.axaml" value="camera/camera.csproj" />

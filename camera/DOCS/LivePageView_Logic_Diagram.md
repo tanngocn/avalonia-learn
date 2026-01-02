@@ -228,7 +228,8 @@ Button? _selectedNodeButton
 │ Input:  deviceName, isParent                               │
 │ Output: (TabHeader, DeviceName, IsParent)                  │
 │                                                             │
-│ Returns: (deviceName, deviceName, isParent)                 │
+│ Expression body:                                            │
+│   => (deviceName, deviceName, isParent)                    │
 └─────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────┐
@@ -241,10 +242,70 @@ Button? _selectedNodeButton
 │   → new CameraListView {                                    │
 │        DataContext = new CameraListViewModel(deviceName)   │
 │      }                                                      │
-│ else                                                        │
-│   → new CameraDetailView {                                  │
-│        DataContext = new CameraDetailViewModel(deviceName) │
-│      }                                                      │
+│                                                             │
+│ // Early return (no else needed)                             │
+│ → new CameraDetailView {                                    │
+│      DataContext = new CameraDetailViewModel(deviceName)   │
+│    }                                                        │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🎛️ Sidebar Management
+
+### ViewModel Properties
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ LivePageViewModel Properties                                │
+│                                                             │
+│ [ObservableProperty]                                       │
+│ private bool _isSidebarOpen = true                          │
+│                                                             │
+│ public bool IsSidebarVisible => IsSidebarOpen              │
+│ public bool IsDeviceButtonVisible => !IsSidebarOpen        │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Commands
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ OpenSidebarCommand                                          │
+│ Expression body: => IsSidebarOpen = true                   │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ CloseSidebarCommand                                         │
+│ Expression body: => IsSidebarOpen = false                   │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Sidebar State Flow
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ Initial State:                                              │
+│   IsSidebarOpen = true                                      │
+│   IsSidebarVisible = true                                   │
+│   IsDeviceButtonVisible = false                             │
+└─────────────────────────────────────────────────────────────┘
+                    │
+                    ▼
+┌─────────────────────────────────────────────────────────────┐
+│ User clicks "Close" button:                                 │
+│   CloseSidebarCommand → IsSidebarOpen = false               │
+│   → IsSidebarVisible = false                                │
+│   → IsDeviceButtonVisible = true                            │
+└─────────────────────────────────────────────────────────────┘
+                    │
+                    ▼
+┌─────────────────────────────────────────────────────────────┐
+│ User clicks "Device" button:                                │
+│   OpenSidebarCommand → IsSidebarOpen = true                │
+│   → IsSidebarVisible = true                                 │
+│   → IsDeviceButtonVisible = false                           │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -383,5 +444,12 @@ Button? _selectedNodeButton
 2. **Content Creation**: Mỗi lần select tab, tạo mới control instance để tránh "already has visual parent" error
 3. **Node Button Selection**: Chỉ một node button được chọn tại một thời điểm
 4. **Visual Feedback**: Drop zone có visual feedback khi drag over
-5. **Sidebar Management**: Sidebar mở mặc định (`IsSidebarOpen = true`)
+5. **Sidebar Management**: 
+   - Sidebar mở mặc định (`IsSidebarOpen = true`)
+   - Toggle giữa sidebar và device button dựa trên `IsSidebarOpen`
+   - Sử dụng expression body methods cho clean code
+6. **Code Cleanup**: 
+   - Đã loại bỏ các properties/methods không sử dụng (PrintList, TypeBook, etc.)
+   - ViewModel chỉ giữ lại logic cần thiết cho LivePageView
+   - Sử dụng expression body và early return pattern
 

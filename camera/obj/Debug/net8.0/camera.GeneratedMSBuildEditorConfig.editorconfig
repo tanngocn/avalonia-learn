@@ -79,13 +79,7 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [C:/Users/ngocnt/Desktop/avalonia-learn/camera/Views/HomePageView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/ngocnt/Desktop/avalonia-learn/camera/Views/LiveLogView.axaml]
-build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
-
 [C:/Users/ngocnt/Desktop/avalonia-learn/camera/Views/LivePageView.axaml]
-build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
-
-[C:/Users/ngocnt/Desktop/avalonia-learn/camera/Views/LivePrintView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [C:/Users/ngocnt/Desktop/avalonia-learn/camera/Views/MainWindow.axaml]

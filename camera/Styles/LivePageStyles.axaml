@@ -118,6 +118,12 @@
         <Setter Property="CornerRadius" Value="6" />
         <Setter Property="Margin" Value="5" />
         <Setter Property="MinHeight" Value="50" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Background" Duration="0:0:0.2" />
+                <BrushTransition Property="BorderBrush" Duration="0:0:0.2" />
+            </Transitions>
+        </Setter>
     </Style>
     
     <!-- Drop Zone Border Style (Drag Over) -->

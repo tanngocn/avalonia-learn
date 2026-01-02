@@ -13,31 +13,57 @@
              IsExpanded="False"
              Margin="0,0,0,10"
              HorizontalAlignment="Stretch">
-        <ScrollViewer MaxHeight="300">
-            <ItemsControl ItemsSource="{Binding Events}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Border Background="#F0F0F0" 
-                               BorderBrush="#E0E0E0"
-                               BorderThickness="1"
-                               CornerRadius="4"
-                               Padding="10"
-                               Margin="0,0,0,5">
-                            <StackPanel Spacing="5">
-                                <TextBlock Text="{Binding Title}" 
-                                          FontWeight="Bold" />
-                                <TextBlock Text="{Binding Description}" 
-                                          FontSize="12"
-                                          TextWrapping="Wrap" />
-                                <TextBlock Text="{Binding Timestamp}" 
-                                          FontSize="10"
-                                          Foreground="Gray" />
-                            </StackPanel>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
+        <Border Classes="EventTimelineContainerStyle">
+            <ScrollViewer MaxHeight="250" Classes="EventTimelineScrollViewerStyle">
+                <Grid Classes="EventTimelineGridStyle">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <!-- Timeline line (runs through all items) -->
+                    <Border Grid.Column="0"
+                           Classes="EventTimelineLineStyle" />
+                    
+                    <ItemsControl Grid.Column="0"
+                                 Grid.ColumnSpan="2"
+                                 ItemsSource="{Binding Events}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Classes="EventTimelineItemStyle">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    
+                                    <!-- Timeline marker (circle) - aligned with title -->
+                                    <Ellipse Grid.Column="0"
+                                            Grid.Row="0"
+                                            Classes="EventTimelineMarkerStyle" />
+                                    
+                                    <!-- Event card -->
+                                    <Border Grid.Column="1"
+                                           Grid.Row="0"
+                                           Classes="EventCardStyle">
+                                        <StackPanel Spacing="5">
+                                            <TextBlock Text="{Binding Title}" 
+                                                      Classes="EventTitleStyle" />
+                                            <TextBlock Text="{Binding Description}" 
+                                                      Classes="EventDescriptionStyle" />
+                                            <TextBlock Text="{Binding Timestamp}" 
+                                                      Classes="EventTimestampStyle" />
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+            </ScrollViewer>
+        </Border>
     </Expander>
 </UserControl>
 
